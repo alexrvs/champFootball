@@ -48,6 +48,8 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rails_layout'
+  gem 'omniauth'
+  gem 'omniauth-oauth2'
   gem 'omniauth-facebook'
 end
 
