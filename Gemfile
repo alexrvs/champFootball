@@ -51,6 +51,7 @@ group :development do
   gem 'omniauth'
   gem 'omniauth-oauth2'
   gem 'omniauth-facebook'
+  gem 'omniauth-vkontakte'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
