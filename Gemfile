@@ -35,6 +35,8 @@ gem 'omniauth'
 gem 'omniauth-oauth2'
 gem 'omniauth-facebook'
 gem 'omniauth-vkontakte'
+# materialize-sass is a Sass powered version of Materialize, a modern responsive front-end framework based on Material Design.
+gem 'materialize-sass'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
