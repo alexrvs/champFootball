@@ -43,6 +43,9 @@ gem 'material_icons'
 # gem 'capistrano-rails', group: :development
 # gem rspec testing
 gem 'rspec-rails', '~> 3.5'
+# gen bcrypt hash algorithm
+gem 'bcrypt-ruby', '3.1.2'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
