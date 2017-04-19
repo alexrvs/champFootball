@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'users/new'
+  resources :users
   get 'welcome/index'
   match '/signup', to: 'users#new', via: 'get'
   match '/signin', to: 'users#login', via: 'get'
