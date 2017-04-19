@@ -13,7 +13,7 @@ header {
   -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
+  /*margin-bottom: 20px;*/
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 ul.nav li {
@@ -47,4 +47,13 @@ ul.nav li a {
   border-color: #eed3d7;
   color: #b94a48;
 }
-
+#signup_form{
+    margin:0 auto;
+}
+html {
+    font-family: GillSans, Calibri, Trebuchet, sans-serif;
+}
+#title_page{
+    margin-top: 0;
+    color: #757575;
+}
