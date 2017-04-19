@@ -6,6 +6,7 @@
 #
 default: &default
   adapter: postgresql
+  encoding: unicode
   pool: 5
   timeout: 5000
   username: postgres
@@ -25,3 +26,4 @@ test:
 production:
   <<: *default
   database: champ_db_production
+
