@@ -16,9 +16,11 @@
 //= require materialize-sprockets
 //= require_tree .
 
-
-
 $(document).ready(function () {
-    console.log('document ready');
     $(".dropdown-button").dropdown();
+
+    $("#card-alert .close").click(function() {
+        $(this).closest("#card-alert").fadeOut("slow")
+    });
+
 });

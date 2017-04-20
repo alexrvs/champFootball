@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   include UsersHelper
 
   def show
+    flash[:success] = "Profile Page"
     @user = User.find(params[:id])
   end
 
@@ -13,6 +14,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      flash[:success] = "Profile created"
       redirect_to @user
     else
       render 'new'

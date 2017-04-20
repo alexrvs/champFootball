@@ -58,8 +58,9 @@ html {
     color: #757575;
 }
 .card-panel{
-    height: 600px;
-    margin-top: 0;
+    float: left;
+    overflow: auto;
+    width: 100%;
 }
 
 .gravatar {
@@ -75,6 +76,16 @@ html {
 #error_explanation ul {
     list-style: none;
     margin: 0 0 18px 0;
+}
+
+#card-alert button {
+    background: none;
+    border: none;
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    font-size: 20px;
+    color: #fff;
 }
 
 
