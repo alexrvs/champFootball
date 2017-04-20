@@ -1,0 +1,27 @@
+<% provide(:title, "Sign in") %>
+<div class="row">
+  <div class="card-panel">
+    <h1 align="center" id="title_page">Sign in</h1>
+
+    <div class="col s12 m4 l3"></div>
+    <%= form_for(:sessions, url: sessions_path, :html => {:class => "col s6 m4 l6"}) do |f| %>
+        <%= render 'shared/error_messages' %>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <%= f.text_field :email, id: "email" %>
+            <%= f.label :email %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <%= f.password_field :password, id: "password" %>
+            <%= f.label :password %>
+          </div>
+        </div>
+        <%= f.submit  "Login", class: "btn waves-effect waves-light"  %>
+    <% end %>
+    <div class="col s12 m4 l3"></div>
+
+  </div>
+</div>

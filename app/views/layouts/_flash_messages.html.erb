@@ -11,6 +11,18 @@
           </button>
         </div>
 
+    <% elsif type == "error" %>
+
+        <div id="card-alert" class="card red">
+          <div class="card-content white-text darken-1">
+            <span class="card-title white-text darken-1">Alert Message!</span>
+            <p><%= message.html_safe %></p>
+          </div>
+          <button type="button" class="close white-text" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+
     <% elsif type == "toast" %>
         <script>
             $(function() {
