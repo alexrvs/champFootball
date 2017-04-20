@@ -17,7 +17,7 @@ class User < ApplicationRecord
   end
 
   def User.encrypt(token)
-    Digest.SHA1.hexdigest(token)
+    Digest::SHA1.hexdigest(token)
   end
 
   private
