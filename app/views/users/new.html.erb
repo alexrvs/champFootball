@@ -1,45 +1,39 @@
 <% provide(:title, 'Sign up') %>
 <div class="row">
-
-
     <div class="card-panel">
       <h1 align="center" id="title_page">Sign Up</h1>
       <div class="col s12 m4 l3"></div>
-      <form class="col s6 m4 l6">
+      <%= form_for(@user,:html => {:class => "col s6 m4 l6"}) do |f| %>
         <div class="row">
           <div class="input-field col s6">
-            <input id="first_name" type="text" class="validate">
-            <label for="first_name">First Name</label>
+            <%= f.text_field :first_name, id: "first_name" %>
+            <%= f.label :first_name %>
           </div>
           <div class="input-field col s6">
-            <input id="last_name" type="text" class="validate">
-            <label for="last_name">Last Name</label>
+            <%= f.text_field :last_name, id: "last_name" %>
+            <%= f.label :last_name %>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input id="email" type="email" class="validate">
-            <label for="email">Email</label>
+            <%= f.text_field :email, id: "email" %>
+            <%= f.label :email %>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input id="password" type="password" class="validate">
-            <label for="password">Password</label>
+            <%= f.password_field :password, id: "password" %>
+            <%= f.label :password %>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input id="confirm_password" type="password" class="validate">
-            <label for="confirm_password">Confirmation</label>
+            <%= f.password_field :confirm_password, id: "confirm_password" %>
+            <%= f.label :confirm_password %>
           </div>
         </div>
-        <button class="btn waves-effect waves-light" type="submit" name="action">SignUp
-          <i class="material-icons right">send</i>
-        </button>
-      </form>
+        <%= f.submit  "SignUp", class: "btn waves-effect waves-light"  %>
+        <% end %>
       <div class="col s12 m4 l3"></div>
     </div>
-
-
 </div>

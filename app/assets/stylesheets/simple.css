@@ -59,5 +59,11 @@ html {
 }
 .card-panel{
     height: 600px;
+    margin-top: 0;
+}
+
+.gravatar {
+    float: left;
+    margin-right: 10px;
 }
 
