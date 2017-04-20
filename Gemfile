@@ -45,7 +45,8 @@ gem 'material_icons'
 gem 'rspec-rails', '~> 3.5'
 # gen bcrypt hash algorithm
 gem 'bcrypt-ruby', '3.1.2'
-
+# render partial gem
+gem 'rails_layout'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
@@ -58,7 +59,6 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'rails_layout'
 
 end
 
