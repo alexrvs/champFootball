@@ -4,6 +4,7 @@
       <h1 align="center" id="title_page">Sign Up</h1>
       <div class="col s12 m4 l3"></div>
       <%= form_for(@user,:html => {:class => "col s6 m4 l6"}) do |f| %>
+        <%= render 'shared/error_messages' %>
         <div class="row">
           <div class="input-field col s6">
             <%= f.text_field :first_name, id: "first_name" %>
@@ -28,8 +29,8 @@
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <%= f.password_field :confirm_password, id: "confirm_password" %>
-            <%= f.label :confirm_password %>
+            <%= f.password_field :password_confirmation, id: "password_confirmation" %>
+            <%= f.label :password_confirmation %>
           </div>
         </div>
         <%= f.submit  "SignUp", class: "btn waves-effect waves-light"  %>
