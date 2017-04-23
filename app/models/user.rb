@@ -1,3 +1,5 @@
+require 'base64'
+
 class User < ApplicationRecord
 
   before_save {self.email = email.downcase}
@@ -17,7 +19,7 @@ class User < ApplicationRecord
   end
 
   def User.encrypt(token)
-    Digest::SHA1.hexdigest(token)
+    Digest::SHA1.hexdigest(token.to_s)
   end
 
   private
