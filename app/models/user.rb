@@ -11,8 +11,8 @@ class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
 
-  has_secure_password
-  validates :password, length: {minimum: 6}
+  # has_secure_password
+  # validates :password, length: {minimum: 6}, on: :create
 
 
   def User.new_remember_token
@@ -25,20 +25,16 @@ class User < ApplicationRecord
 
   def self.from_omniauth(auth)
 
-    user = User.find_by(facebook_id: auth[:uid])
-    puts auth.inspect
-    unless user
-      user = User.new
-      user.facebook_id = auth[:uid]
-      user.first_name = auth[:info][:first_name]
-      user.last_name = auth[:info][:last_name]
-      user.email = auth[:info][:email]
+    where(provider: auth.provider,facebook_id: auth.uid).first_or_create do |user|
+      user.facebook_id = auth.uid
+      user.email = auth.info.email
+      # user.password = Devise.friendly_token[0,20]
+      user.first_name = auth.info.first_name
+      user.last_name = auth.info.last_name
       user.oauth_token = auth.credentials.token
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-      user.save!
-
+      user.image = auth.info.image
     end
-
 
   end
 

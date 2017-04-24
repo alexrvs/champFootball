@@ -20,11 +20,13 @@ class SessionsController < ApplicationController
   end
 
   def createSocAuth
-    auth = request.env['omniauth.auth']
+    @user = User.from_omniauth(request.env['omniauth.auth'])
+    if @user.present?
+      flash.now[:success] = "Profile page"
+      sign_in @user
+      redirect_to @user
+    end
 
-    user = User.from_omniauth(auth)
-    session[:user_id] = user.id
-    redirect_to root_url
   end
 
   def destroy
