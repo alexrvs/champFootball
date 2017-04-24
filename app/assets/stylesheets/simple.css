@@ -87,5 +87,7 @@ html {
     font-size: 20px;
     color: #fff;
 }
-
+.sign_up_button{
+    float: right;
+}
 
