@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   match '/signout', to: 'sessions#destroy', via: 'delete'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  get '/auth/:provider/callback', to: 'sessions#create'
 
+  # Social Auth
+
+  match 'auth/:provider/callback', to: 'sessions#createSocAuth', via: 'get'
+  match 'auth/failure', to: redirect('/'), via: 'get'
   root 'welcome#index'
 end

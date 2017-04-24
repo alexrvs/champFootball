@@ -19,9 +19,19 @@ class SessionsController < ApplicationController
 
   end
 
+  def createSocAuth
+    auth = request.env['omniauth.auth']
+
+    user = User.from_omniauth(auth)
+    session[:user_id] = user.id
+    redirect_to root_url
+  end
+
   def destroy
     sign_out
     redirect_to root_url
   end
+
+
 
 end

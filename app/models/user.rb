@@ -2,6 +2,7 @@ require 'base64'
 
 class User < ApplicationRecord
 
+
   before_save {self.email = email.downcase}
   before_create :create_remember_token
 
@@ -20,6 +21,25 @@ class User < ApplicationRecord
 
   def User.encrypt(token)
     Digest::SHA1.hexdigest(token.to_s)
+  end
+
+  def self.from_omniauth(auth)
+
+    user = User.find_by(facebook_id: auth[:uid])
+    puts auth.inspect
+    unless user
+      user = User.new
+      user.facebook_id = auth[:uid]
+      user.first_name = auth[:info][:first_name]
+      user.last_name = auth[:info][:last_name]
+      user.email = auth[:info][:email]
+      user.oauth_token = auth.credentials.token
+      user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+      user.save!
+
+    end
+
+
   end
 
   private
