@@ -15,10 +15,9 @@ Rails.application.routes.draw do
   match 'auth/failure', to: redirect('/'), via: 'get'
   root 'welcome#index'
 
-  namespace :admin do
-    resources :users
-    resources :tournaments
-    root 'users#index'
+  # Admin Panel
 
+  namespace :admin do
+    get '', to:  'base#index'
   end
 end

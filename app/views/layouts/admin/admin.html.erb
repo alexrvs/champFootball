@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= content_for?(:title) ? yield(:title) : "Champ Football" %></title>
+  <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Champ Football" %>">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <%= stylesheet_link_tag 'admin', media: 'all' %>
+  <%= javascript_include_tag 'admin' %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="<%= controller_name %> <%= action_name %>">
+<header>
+  <%= render 'layouts/admin/navigation' %>
+</header>
+<main role="main">
+
+  <div class="container">
+    <%= yield %>
+  </div>
+</main>
+<footer class="page-footer">
+  <%= render 'layouts/admin/footer' %>
+</footer>
+
+</body>
+</html>
