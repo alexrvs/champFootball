@@ -1,4 +1,4 @@
-class Admin::DashboardController < BaseController
+class Admin::DashboardController < ApplicationController
 
 
 
