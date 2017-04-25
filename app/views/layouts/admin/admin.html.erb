@@ -11,15 +11,19 @@
 </head>
 <body class="<%= controller_name %> <%= action_name %>">
 <% if signed_in_as_admin? %>
-  <header>
+  <header id="header" class="page-topbar">
     <%= render 'layouts/admin/navigation' %>
   </header>
-  <main role="main">
+  <!--<main role="main">-->
 
-    <div class="container">
-      <%= yield %>
+    <div id="main">
+      <div class="wrapper">
+        <%= render 'layouts/admin/sidebar' %>
+        <%= yield %>
+      </div>
     </div>
-  </main>
+
+  <!--</main>-->
   <footer class="page-footer">
     <%= render 'layouts/admin/footer' %>
   </footer>

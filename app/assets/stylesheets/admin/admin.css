@@ -7,10 +7,18 @@ main {
     width: 100%;
     flex: 1 0 auto;
 }
+#main{
+    background-color: #eee;
+    padding-bottom: 80px;
+    width: 100%;
+    flex: 1 0 auto;
+    padding-left: 240px;
+}
 body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    background-color: #00bcd4 !important;
 }
 
 header {
@@ -98,13 +106,31 @@ html {
     float: right;
 }
 
-header, main, footer {
+/*header, main, footer {
     padding-left: 300px;
-}
+}*/
 
 @media only screen and (max-width : 992px) {
     header, main, footer {
         padding-left: 0;
     }
 }
-
+.logo-wrapper{
+    font-size: 2rem;
+}
+#left-sidebar-nav{
+    position: fixed;
+    width: 100px;
+    left: 180px;
+    z-index: 999;
+    height: auto;
+}
+ul.side-nav.leftside-navigation {
+    top: 68px !important
+}
+.page-footer{
+    padding-left: 240px;
+}
+#slide-out{
+    overflow-y: hidden;
+}

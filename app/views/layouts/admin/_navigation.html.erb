@@ -1,14 +1,23 @@
-<ul id="slide-out" class="side-nav fixed">
-  <li><a href="#!">Dashboard</a></li>
-  <li><%= link_to 'Users', '#' %></li>
-  <li><%= link_to 'Tournaments', '#' %></li>
+<ul id="dropdown1" class="dropdown-content">
+  <li><%= link_to 'Profile', current_user %></li>
+  <li><%= link_to 'Settings', edit_user_path(current_user) %></li>
+  <li class="divider"></li>
+  <li><%= link_to 'Sign Out', signout_path, method: "delete" %></li>
 </ul>
-<nav>
-  <div class="nav-wrapper">
-    <div class="col s12">
-      <a href="#!" class="breadcrumb">First</a>
-      <a href="#!" class="breadcrumb">Second</a>
-      <a href="#!" class="breadcrumb">Third</a>
-    </div>
+
+<!-- START HEADER -->
+  <div class="navbar-fixed">
+    <nav class="navbar-color">
+      <div class="nav-wrapper">
+        <ul class="left">
+          <li><h1 class="logo-wrapper"><span class="logo-text">Dashboard</span></h1></li>
+        </ul>
+        <ul class="right hide-on-med-and-down">
+          <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Account<i class="material-icons right">arrow_drop_down</i></a></li>
+        </ul>
+
+      </div>
+    </nav>
   </div>
-</nav>
+
+<!-- END HEADER -->
