@@ -21,8 +21,19 @@ class UsersController < ApplicationController
     end
   end
 
-  def login
+  def edit
+    @user = User.find(params[:id])
+  end
 
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      flash.now[:success] = "Profile successful updated!"
+      redirect_to @user
+    elsif
+      flash.now[:error] = "Please try agailn to update profile!"
+      render 'edit'
+    end
   end
 
   def user_params

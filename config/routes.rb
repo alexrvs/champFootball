@@ -14,4 +14,11 @@ Rails.application.routes.draw do
   match 'auth/:provider/callback', to: 'sessions#createSocAuth', via: 'get'
   match 'auth/failure', to: redirect('/'), via: 'get'
   root 'welcome#index'
+
+  namespace :admin do
+    resources :users
+    resources :tournaments
+    root 'users#index'
+
+  end
 end

@@ -1,0 +1,47 @@
+<% provide(:title, 'Edit User') %>
+<div class="row">
+  <div class="card-panel">
+    <h1 align="center" id="title_page">Edit Profile</h1>
+    <div class="col s12 m4 l3"></div>
+    <%= form_for(@user,:html => {:class => "col s6 m4 l6"}) do |f| %>
+        <%= render 'shared/error_messages' %>
+        <div class="row">
+          <div class="input-field col s6">
+            <%= f.text_field :first_name, id: "first_name" %>
+            <%= f.label :first_name %>
+          </div>
+          <div class="input-field col s6">
+            <%= f.text_field :last_name, id: "last_name" %>
+            <%= f.label :last_name %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <%= f.text_field :email, id: "email" %>
+            <%= f.label :email %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <%= f.password_field :password, id: "password" %>
+            <%= f.label :password %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <%= f.password_field :password_confirmation, id: "password_confirmation" %>
+            <%= f.label :password_confirmation %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <%= gravatar_for @user %>
+            <a href="http://gravatar.com/emails">change</a>
+          </div>
+        </div>
+        <%= f.submit  "Save Changes", class: "btn waves-effect waves-light" %>
+
+    <% end %>
+    <div class="col s12 m4 l3"></div>
+  </div>
+</div>
