@@ -11,8 +11,11 @@ class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
 
-   has_secure_password
-   validates :password, length: {minimum: 6}, on: :create
+
+  # validates :password, length: {minimum: 6}, on: :create
+
+  has_secure_password
+  validates_presence_of :password_digest, :unless => ':password.blank?'
 
 
   def User.new_remember_token
@@ -28,7 +31,7 @@ class User < ApplicationRecord
     where(provider: auth.provider,facebook_id: auth.uid).first_or_create do |user|
       user.facebook_id = auth.uid
       user.email = auth.info.email
-      # user.password = Devise.friendly_token[0,20]
+      # user.password_digest = ''
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
       user.oauth_token = auth.credentials.token
