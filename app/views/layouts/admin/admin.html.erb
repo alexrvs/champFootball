@@ -10,18 +10,22 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= controller_name %> <%= action_name %>">
-<header>
-  <%= render 'layouts/admin/navigation' %>
-</header>
-<main role="main">
+<% if signed_in_as_admin? %>
+  <header>
+    <%= render 'layouts/admin/navigation' %>
+  </header>
+  <main role="main">
 
-  <div class="container">
-    <%= yield %>
-  </div>
-</main>
-<footer class="page-footer">
-  <%= render 'layouts/admin/footer' %>
-</footer>
-
+    <div class="container">
+      <%= yield %>
+    </div>
+  </main>
+  <footer class="page-footer">
+    <%= render 'layouts/admin/footer' %>
+  </footer>
+<% end %>
+<% unless signed_in_as_admin? %>
+    <%= render 'layouts/admin/login' %>
+<% end %>
 </body>
 </html>

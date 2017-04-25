@@ -22,6 +22,10 @@ module SessionsHelper
     !current_user.nil?
   end
 
+  def signed_in_as_admin?
+    !current_user.nil? && current_user.is_admin
+  end
+
   def sign_out
     current_user.update_attribute(:remember_token, User.encrypt(User.new_remember_token))
     cookies.delete(:remember_token)
