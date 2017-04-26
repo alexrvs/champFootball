@@ -18,9 +18,8 @@ Rails.application.routes.draw do
   # Admin Panel
 
   namespace :admin do
-    resources :users
+    resources :users, path: 'admin/users'
     resources :sessions
-
     resources :tournaments, path: "admin/tournaments"
 
     get 'tournaments', to: 'tournaments#index'

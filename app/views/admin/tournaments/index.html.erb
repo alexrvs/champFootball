@@ -1,12 +1,18 @@
 <h1>Listing Tournaments</h1>
 
 <table class="bordered">
+  <thead>
   <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th colspan="2" aria-valuetext="center">Action</th>
   </tr>
+  </thead>
 
   <% @tournaments.each do |tournament| %>
       <tr>
         <td><%= link_to tournament.name, :action => 'show', :id => tournament.id %></td>
+        <td width="40%"><%= tournament.description %> </td>
         <td><%= link_to 'Edit', :action => 'edit', :id => tournament.id %></td>
         <td><%= link_to 'Destroy', {:action => 'destroy', :id => tournament.id}, :confirm => 'Are you sure?', :method => :post %></td>
       </tr>

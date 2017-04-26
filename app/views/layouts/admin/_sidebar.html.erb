@@ -11,13 +11,13 @@
       </div>
     </li>
     <li class="bold active">
-      <a href="index.html" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i> Dashboard</a>
+      <%= link_to 'Dashboard', '/admin', class: 'waves-effect waves-cyan' %>
     </li>
     <li class="bold">
-      <%= link_to 'Users', '#', class: 'waves-effect waves-cyan' %>
+      <%= link_to 'Users', admin_users_path, class: 'waves-effect waves-cyan' %>
     </li>
     <li class="bold">
-      <%= link_to 'Tournaments', '#', class: 'waves-effect waves-cyan' %>
+      <%= link_to 'Tournaments', admin_tournaments_path, class: 'waves-effect waves-cyan' %>
     </li>
 
     <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 3px;"><div class="ps-scrollbar-x" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; height: 290px; right: 3px;"><div class="ps-scrollbar-y" style="top: 0px; height: 64px;"></div></div></ul>

@@ -1,7 +1,9 @@
 class Admin::TournamentsController < ApplicationController
+  layout 'admin/admin'
+
 
   def index
-    @tournaments = Tournament.find()
+    @tournaments = Tournament.all
   end
 
 
@@ -15,7 +17,7 @@ class Admin::TournamentsController < ApplicationController
   end
 
   def create
-    @tournament = Tournament.new(params[:tournament])
+    @tournament = Tournament.new(tournament_params)
     if @tournament.save
       redirect_to :action => 'show', :id => @tournament.id
     else
@@ -39,6 +41,11 @@ class Admin::TournamentsController < ApplicationController
     elsif
       render 'update'
     end
+  end
+
+
+  def tournament_params
+    params.require(:tournament).permit(:name,:description)
   end
 
 end

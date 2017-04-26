@@ -1,19 +1,48 @@
 <div id="login-page" class="row">
   <div class="col s12 z-depth-4 card-panel">
-    <form class="login-form">
+
+    <%= form_for(:sessions, url: sessions_path, :html => {:class => "login-form"}) do |f| %>
+        <div class="row">
+          <div class="input-field col s12 center">
+            <p class="center login-form-text">Admin Panel</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12 center">
+            <%= f.text_field :email, id: "email" %>
+            <%= f.label :email %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12 center">
+            <%= f.password_field :password, id: "password" %>
+            <%= f.label :password %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <%= f.submit  "Login", class: "btn waves-effect waves-light col s12"  %>
+          </div>
+        </div>
+
+    <% end %>
+
+
+
+    <!--<form class="login-form">
       <div class="row">
         <div class="input-field col s12 center">
           <p class="center login-form-text">Admin Panel</p>
         </div>
       </div>
-      <div class="row margin">
+      <div class="row">
         <div class="input-field col s12">
           <i class="mdi-social-person-outline prefix"></i>
           <input id="username" type="text">
           <label for="username" class="center-align">Username</label>
         </div>
       </div>
-      <div class="row margin">
+      <div class="row">
         <div class="input-field col s12">
           <i class="mdi-action-lock-outline prefix"></i>
           <input id="password" type="password">
@@ -31,6 +60,10 @@
           <a href="index.html" class="btn waves-effect waves-light col s12">Login</a>
         </div>
       </div>
-    </form>
+    </form>-->
+
+
+
+
   </div>
 </div>

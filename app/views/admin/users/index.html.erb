@@ -1,0 +1,36 @@
+<h1>Listing Users</h1>
+
+<table class="bordered">
+  <thead>
+  <tr>
+    <th>Avatar</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+    <th>Created</th>
+    <th>Updated</th>
+    <th colspan="2" aria-valuetext="center">Action</th>
+  </tr>
+  </thead>
+
+  <% @users.each do |user| %>
+      <tr>
+        <% unless user.image.blank? %>
+            <td><%= image_tag(user.image, alt: user.first_name, class: "gravatar") %></td>
+        <% else %>
+        <td><%= gravatar_for user %></td>
+        <% end %>
+        <td><%= link_to user.first_name, :action => 'show', :id => user.id %></td>
+        <td><%= link_to user.last_name, :action => 'show', :id => user.id %></td>
+        <td><%= link_to user.email, :action => 'show', :id => user.id %></td>
+        <td><%= time_ago_in_words(user.created_at) %> </td>
+        <td><%= time_ago_in_words(user.updated_at) %> </td>
+        <td><%= link_to 'Edit', :action => 'edit', :id => user.id %></td>
+        <td><%= link_to 'Destroy', {:action => 'destroy', :id => user.id}, :confirm => 'Are you sure?', :method => :post %></td>
+      </tr>
+  <% end %>
+</table>
+
+<br />
+
+<%= link_to 'New User', :action => 'new' %>

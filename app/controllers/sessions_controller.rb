@@ -9,9 +9,12 @@ class SessionsController < ApplicationController
   def create
 
     user = User.find_by(email: params[:sessions][:email].downcase)
-    if user && user.authenticate(params[:sessions][:password])
+    if user && user.authenticate(params[:sessions][:password]) && !user.is_admin
       sign_in user
       redirect_to user
+    elsif user &&user.authenticate(params[:sessions][:password]) && user.is_admin
+      sign_in user
+      redirect_to admin_tournaments_path
     else
       flash.now[:error] = "Invalid email or password"
       render 'new'
@@ -28,6 +31,7 @@ class SessionsController < ApplicationController
     end
 
   end
+
 
   def destroy
     sign_out

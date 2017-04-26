@@ -1,0 +1,11 @@
+<h4><%=h @tournament.name %></h4>
+
+<div class="row">
+  <%= @tournament.description %>
+</div>
+
+
+<p>Created: <i><%= time_ago_in_words(@tournament.created_at) %> ago</i></p>
+
+<%= link_to 'Edit', :action => 'edit', :id => @tournament.id %> |
+<%= link_to 'Back', :action => nil %>
