@@ -38,6 +38,10 @@
             <%= gravatar_for @user %>
             <a href="http://gravatar.com/emails">change</a>
           </div>
+          <div class="field">
+            <%= f.label :image %><br>
+            <%= f.file_field :image %>
+          </div>
         </div>
         <%= f.submit  "Save Changes", class: "btn waves-effect waves-light" %>
 

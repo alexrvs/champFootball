@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   get 'welcome/index'
@@ -20,7 +22,9 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, path: 'admin/users'
     resources :sessions
-    resources :tournaments, path: "admin/tournaments"
+    resources :tournaments, path: 'admin/tournaments'
+    resources :teams, path: 'admin/teams'
+    resources :tournamenttypes, path: 'admin/tournamenttypes'
 
     get 'tournaments', to: 'tournaments#index'
     get '', to:  'base#index'
