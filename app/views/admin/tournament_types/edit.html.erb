@@ -5,17 +5,11 @@
 <div class="row">
   <div class="card-panel">
     <div class="col s12 m4 l3"></div>
-    <%= form_for(:tournament,  :url => {:action => 'update'}) do |f| %>
+    <%= form_for(:tournament_type,  :url => {:action => 'update'}) do |f| %>
         <div class="row">
           <div class="input-field col s6">
             <%= f.text_field :name, id: "tournament_name" %>
             <%= f.label :name %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s6">
-            <%= f.text_area :description, id: "tournament_description" %>
-            <%= f.label :description %>
           </div>
         </div>
         <%= f.submit  "Update", class: "btn waves-effect waves-light" %>

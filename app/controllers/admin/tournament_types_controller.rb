@@ -3,48 +3,48 @@ class Admin::TournamentTypesController < ApplicationController
 
 
   def index
-    @tournamenttypes = TournamentType.all
+    @tournament_types = TournamentType.all
   end
 
 
   def show
-    @tournamenttype = TournamentType.find(params[:id])
+    @tournament_type = TournamentType.find(params[:id])
 
   end
 
   def new
-    @tournamenttype = TournamentType.new
+    @tournament_type = TournamentType.new
   end
 
   def create
-    @tournamenttype = TournamentType.new(tournamenttype_params)
-    if @tournamenttype.save
-      redirect_to :action => 'show', :id => @tournamenttype.id
+    @tournament_type = TournamentType.new(tournament_type_params)
+    if @tournament_type.save
+      redirect_to :action => 'show', :id => @tournament_type.id
     else
       render :action => 'new'
     end
   end
 
   def destroy
-    @tournamenttype = TournamentType.find(params[:id])
-
+    @tournament_type = TournamentType.find(params[:id])
+    @tournament_type.destroy
   end
 
   def edit
-    @tournamenttype = TournamentType.find(params[:id])
+    @tournament_type = TournamentType.find(params[:id])
   end
 
   def update
-    @tournamenttype = TournamentType.find(params[:id])
-    if @tournamenttype.update_attributes(params[:tournamenttype])
-      redirect_to :action => 'show', :id => @tournamenttype.id
+    @tournament_type = TournamentType.find(params[:id])
+    if @tournament_type.update_attributes(params[:tournament_types])
+      redirect_to :action => 'show', :id => @tournament_type.id
     elsif
     render 'update'
     end
   end
 
 
-  def tournamenttype_params
-    params.require(:team).permit(:name)
+  def tournament_type_params
+    params.require(:tournament_type).permit(:name)
   end
 end

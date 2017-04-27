@@ -134,7 +134,9 @@ ul.side-nav.leftside-navigation {
 #slide-out{
     overflow-y: hidden;
 }
-.logo-wrapper li{
-    margin-top: -15px;
-    margin-left: 5px;
+.logo-wrapper{
+    margin: 20px;
+}
+.wrapper{
+    padding-left: 45px;
 }

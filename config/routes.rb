@@ -24,9 +24,10 @@ Rails.application.routes.draw do
     resources :sessions
     resources :tournaments, path: 'admin/tournaments'
     resources :teams, path: 'admin/teams'
-    resources :tournamenttypes, path: 'admin/tournamenttypes'
+    resources :tournament_types, path: 'admin/tournament_types'
 
     get 'tournaments', to: 'tournaments#index'
+    get 'tournament_types', to: 'tournament_types#index'
     get '', to:  'base#index'
   end
 end

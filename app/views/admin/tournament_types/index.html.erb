@@ -1,4 +1,4 @@
-<h1>Listing TournamentType</h1>
+<h1>Listing Tournament Types</h1>
 
 <table class="bordered">
   <thead>
@@ -8,15 +8,17 @@
   </tr>
   </thead>
 
-  <% @tournamenttype.each do |tournamenttype| %>
+  <% @tournament_types.each do |tournament_type| %>
       <tr>
-        <td><%= link_to tournamenttype.name, :action => 'show', :id => tournamenttype.id %></td>
-        <td><%= link_to 'Edit', :action => 'edit', :id => tournamenttype.id %></td>
-        <td><%= link_to 'Destroy', {:action => 'destroy', :id => tournamenttype.id}, :confirm => 'Are you sure?', :method => :post %></td>
+        <td><%= link_to tournament_type.name, :action => 'show', :id => tournament_type.id %></td>
+        <td><%= link_to 'Edit', :action => 'edit', :id => tournament_type.id %></td>
+        <td>
+          <%= link_to 'Destroy', admin_tournament_type_path(tournament_type), data: {:confirm => 'Are you sure?'}, :method => :delete %>
+        </td>
       </tr>
   <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Type', :action => 'new', class: 'waves-effect waves-light btn' %>
+<%= link_to 'New Type', {action: 'new'}, {class: "waves-effect waves-light btn"}  %>
