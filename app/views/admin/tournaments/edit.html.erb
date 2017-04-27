@@ -23,12 +23,15 @@
         <div class="row">
           <div class="input-field col s6">
             <select>
-              <option value="" disabled selected>Choose your option</option>
-              <option value="1">Option 1</option>
-              <option value="2">Option 2</option>
-              <option value="3">Option 3</option>
+              <% @tournaments_type.each do |type| %>
+                  <% if :tournament_type_id == type.id %>
+                  <option selected value="<%= type.id %>"><%= type.name %></option>
+                  <% else %>
+                      <option value="<%= type.id %>"><%= type.name %></option>
+                  <% end %>
+              <% end %>
             </select>
-            <label>Materialize Select</label>
+            <label>Status Tournament</label>
           </div>
         </div>
         <%= f.submit  "Update", class: "btn waves-effect waves-light" %>
