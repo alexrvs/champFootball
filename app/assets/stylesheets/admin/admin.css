@@ -140,3 +140,6 @@ ul.side-nav.leftside-navigation {
 .wrapper{
     padding-left: 45px;
 }
+#tournament_description{
+    height: 200px;
+}

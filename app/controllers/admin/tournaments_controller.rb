@@ -4,6 +4,7 @@ class Admin::TournamentsController < ApplicationController
 
   def index
     @tournaments = Tournament.all
+
   end
 
 
@@ -14,6 +15,7 @@ class Admin::TournamentsController < ApplicationController
 
   def new
     @tournament = Tournament.new
+    @tournaments_type = TournamentType.all
   end
 
   def create
@@ -32,6 +34,8 @@ class Admin::TournamentsController < ApplicationController
 
   def edit
     @tournament = Tournament.find(params[:id])
+    @tournaments_type = TournamentType.all
+
   end
 
   def update

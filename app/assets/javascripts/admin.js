@@ -17,5 +17,5 @@
 //= require_tree ./admin
 
 $(document).ready(function () {
-   console.log('admin');
+    $('select').material_select()
 });
