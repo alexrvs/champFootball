@@ -1,0 +1,44 @@
+<h1>Generate Matches</h1>
+
+<div class="row ">
+  <div class="col s6">
+    <ul class="tabs">
+      <li class="tab col s6"><a class="active" href="#test1">Regular</a></li>
+      <li class="tab col s6"><a class="active" href="#test2">Play-Off</a></li>
+    </ul>
+  </div>
+  <div id="test1" class="col s12">
+    <div class="row">
+      <table class="bordered">
+        <thead>
+        <tr>
+          <th>Team1</th>
+          <th>Team2</th>
+          <th>Count Matches</th>
+          <th colspan="2" aria-valuetext="center">Action</th>
+        </tr>
+        </thead>
+        <% @count = @teams.count - 1 %>
+        <% @teams.each do |team_first| %>
+            <% @teams.each do |team_second|%>
+                <% unless team_first == team_second %>
+                    <tr>
+                      <td><%= team_first.name %></td>
+                      <td><%= team_second.name %></td>
+                      <td><%= @count %></td>
+                      <td><%= link_to 'Edit', :action => 'edit', :id => team_first.id %></td>
+                      <td><%= link_to 'Destroy', {:action => 'destroy', :id => team_second.id}, :confirm => 'Are you sure?', :method => :post %></td>
+                    </tr>
+                <% end %>
+            <% end %>
+        <% end %>
+      </table>
+    </div>
+    <div class="row">
+      <%= link_to 'Generate Matches', {action: 'generate'}, {class: "waves-effect waves-light btn"}  %>
+    </div>
+  </div>
+  <div id="test2" class="col s12">
+
+  </div>
+</div>

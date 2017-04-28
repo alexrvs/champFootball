@@ -25,10 +25,13 @@ Rails.application.routes.draw do
     resources :tournaments, path: 'admin/tournaments'
     resources :teams, path: 'admin/teams'
     resources :tournament_types, path: 'admin/tournament_types'
+    resources :matches, path: 'admin/matches'
 
     get 'tournaments', to: 'tournaments#index'
     get 'tournament_types', to: 'tournament_types#index'
     get '', to:  'base#index'
     get 'generate', to: 'teams#generate'
+    get 'generate_matches', to: 'matches#index_generate'
+    get 'generate_matches_round', to:'matches#generate'
   end
 end

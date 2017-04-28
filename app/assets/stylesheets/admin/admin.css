@@ -143,3 +143,6 @@ ul.side-nav.leftside-navigation {
 #tournament_description{
     height: 200px;
 }
+.fixed-action-btn{
+    bottom: 80px !important;
+}

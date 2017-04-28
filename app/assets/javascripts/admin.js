@@ -17,5 +17,6 @@
 //= require_tree ./admin
 
 $(document).ready(function () {
-    $('select').material_select()
+    $('select').material_select();
+    $('ul.tabs').tabs();
 });
