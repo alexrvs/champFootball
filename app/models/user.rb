@@ -2,6 +2,7 @@ require 'base64'
 
 class User < ApplicationRecord
 
+  belongs_to :team
 
   before_save {self.email = email.downcase}
   before_create :create_remember_token

@@ -29,5 +29,6 @@ Rails.application.routes.draw do
     get 'tournaments', to: 'tournaments#index'
     get 'tournament_types', to: 'tournament_types#index'
     get '', to:  'base#index'
+    get 'generate', to: 'teams#generate'
   end
 end

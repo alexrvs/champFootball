@@ -1,2 +1,27 @@
-<h1>Admin::Team#index</h1>
-<p>Find me in app/views/admin/team/index.html.erb</p>
+<h1>Listing Teams</h1>
+
+<table class="bordered">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Player1</th>
+    <th>Player2</th>
+    <th colspan="2" aria-valuetext="center">Action</th>
+  </tr>
+  </thead>
+
+  <% @teams.each do |team| %>
+      <tr>
+        <td><%= link_to team.name, :action => 'show', :id => team.id %></td>
+        <td width="40%"><%= team.description %> </td>
+        <td><%= team.users.first.first_name + ' ' + team.users.first.last_name %></td>
+        <td><%= team.users.last.first_name + ' ' + team.users.last.last_name %></td>
+        <td><%= link_to 'Edit', :action => 'edit', :id => team.id %></td>
+        <td><%= link_to 'Destroy', {:action => 'destroy', :id => team.id}, :confirm => 'Are you sure?', :method => :post %></td>
+      </tr>
+  <% end %>
+</table>
+<br />
+<%= link_to 'New Team', {action: 'new'}, {class: "waves-effect waves-light btn"}  %>
+<%= link_to 'Generate Teams', {action: 'generate'}, {class: "waves-effect waves-light btn"}  %>
