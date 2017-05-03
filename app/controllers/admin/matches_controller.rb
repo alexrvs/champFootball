@@ -3,6 +3,7 @@ class Admin::MatchesController < ApplicationController
   layout 'admin/admin'
 
 
+
   def index
     @matches = Match.all
   end
@@ -58,18 +59,25 @@ class Admin::MatchesController < ApplicationController
 
   def generate
 
-    @count = @teams.count - 1
+    @teams = Team.all
+    @count = @teams.count - (@teams.count - 1)
 
     @teams.each do |team_first|
       @teams.each do |team_second|
         unless team_first == team_second
           t1_id = team_first.id
           t2_id = team_second.id
-          mathes = TeamMatch.new
 
-        end
+            @teams_matches = TeamMatch.new
+            @teams_matches.team_id = t1_id.to_i
+
+            @teams_matches.matches << Match.new(id_team: t1_id.to_i, id_tournament: 1,id_round: 1)
+            @teams_matches.save
+
+      end
       end
     end
+    redirect_to :controller => 'matches', :action => 'index'
   end
 
 

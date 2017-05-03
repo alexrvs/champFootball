@@ -18,7 +18,7 @@
           <th colspan="2" aria-valuetext="center">Action</th>
         </tr>
         </thead>
-        <% @count = @teams.count - 1 %>
+        <% @count = @teams.count - (@teams.count - 1) %>
         <% @teams.each do |team_first| %>
             <% @teams.each do |team_second|%>
                 <% unless team_first == team_second %>
