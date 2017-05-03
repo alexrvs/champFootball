@@ -1,5 +1,5 @@
 class Match < ApplicationRecord
 
-   belongs_to :team_match
+   belongs_to :teams_match
 
 end
