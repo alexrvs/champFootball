@@ -57,6 +57,7 @@ Rails.application.routes.draw do
     resources :tournament_types, path: 'admin/tournament_types'
     resources :matches, path: 'admin/matches'
     resources :rounds, path: 'admin/rounds'
+    resources :standings, path: 'admin/standings'
 
     get 'tournaments', to: 'tournaments#index'
     get 'tournament_types', to: 'tournament_types#index'
