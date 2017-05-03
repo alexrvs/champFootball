@@ -1,6 +1,36 @@
 Rails.application.routes.draw do
 
 
+  namespace :admin do
+    get 'rounds/index'
+  end
+
+  namespace :admin do
+    get 'rounds/show'
+  end
+
+  namespace :admin do
+    get 'rounds/update'
+  end
+
+  namespace :admin do
+    get 'rounds/edit'
+  end
+
+  namespace :admin do
+    get 'rounds/delete'
+  end
+
+  get 'rounds/index'
+
+  get 'rounds/edit'
+
+  get 'rounds/delete'
+
+  get 'rounds/update'
+
+  get 'rounds/show'
+
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   get 'welcome/index'
@@ -26,6 +56,7 @@ Rails.application.routes.draw do
     resources :teams, path: 'admin/teams'
     resources :tournament_types, path: 'admin/tournament_types'
     resources :matches, path: 'admin/matches'
+    resources :rounds, path: 'admin/rounds'
 
     get 'tournaments', to: 'tournaments#index'
     get 'tournament_types', to: 'tournament_types#index'
