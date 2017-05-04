@@ -60,27 +60,19 @@ class Admin::TeamsController < ApplicationController
 
   def generate
 
-    @countUsers = User.count - 1
-    @users = User.all.to_a
-    @users.each do |user|
-      unless user.is_admin
-        user.update_attribute(:rank,[*1..@countUsers].sample)
-      end
-    end
+    @usersTeam = User.without_admin.to_a
+    @countTeams = (@usersTeam.count/2).to_i
 
-    @countTeams = @countUsers/2.to_i
     @countTeams.times do |i|
       @team = Team.new
-      @team.name = 'Team ' + i.to_s
-      @team.description = 'Default Description ' + @team.name.to_s
-      @team.points_count = i
+      @team.name = 'Team ' + (i+1).to_s
+      @team.description = 'Default Description. I can to set new description for' + @team.name.to_s
+      @team.points_count = (i+1).to_i
+      @team.user1_id = @usersTeam.max{|u| u.rank}.id
+      @usersTeam.delete_if{|u| u.rank == @usersTeam.max.rank}
+      @team.user2_id = @usersTeam.min{|u| u.rank}.id
+      @usersTeam.delete_if{|u| u.rank == @usersTeam.min.rank}
       @team.save
-        2.times do |j|
-          unless @users.last.is_admin
-            @users.last.update_attribute(:team_id, @team.id)
-            @users.pop
-          end
-        end
     end
     redirect_to :action => 'index'
   end

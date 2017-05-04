@@ -18,6 +18,8 @@ class User < ApplicationRecord
   has_secure_password
   validates_presence_of :password_digest, :unless => ':password.blank?'
 
+  scope :without_admin, -> { where(:is_admin => nil)}
+
 
   def User.new_remember_token
     SecureRandom.urlsafe_base64
