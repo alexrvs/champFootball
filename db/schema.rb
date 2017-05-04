@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170503122854) do
+ActiveRecord::Schema.define(version: 20170504093021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,9 +18,10 @@ ActiveRecord::Schema.define(version: 20170503122854) do
   create_table "matches", force: :cascade do |t|
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.integer  "team_id"
     t.integer  "tournament_id"
     t.integer  "round_id"
+    t.integer  "team1_id"
+    t.integer  "team2_id"
   end
 
   create_table "rounds", force: :cascade do |t|
@@ -36,6 +37,8 @@ ActiveRecord::Schema.define(version: 20170503122854) do
     t.integer  "points_count"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "user1_id"
+    t.integer  "user2_id"
   end
 
   create_table "teams_matches", force: :cascade do |t|
@@ -88,9 +91,12 @@ ActiveRecord::Schema.define(version: 20170503122854) do
     t.string   "image"
     t.boolean  "is_admin"
     t.integer  "rank"
-    t.integer  "team_id"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["remember_token"], name: "index_users_on_remember_token", using: :btree
   end
 
+  add_foreign_key "matches", "teams", column: "team1_id"
+  add_foreign_key "matches", "teams", column: "team2_id"
+  add_foreign_key "teams", "users", column: "user1_id"
+  add_foreign_key "teams", "users", column: "user2_id"
 end
