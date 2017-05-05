@@ -66,12 +66,17 @@ class Admin::TeamsController < ApplicationController
     @countTeams.times do |i|
       @team = Team.new
       @team.name = 'Team ' + (i+1).to_s
-      @team.description = 'Default Description. I can to set new description for' + @team.name.to_s
+      @team.description = 'Default Description' + @team.name.to_s
       @team.points_count = (i+1).to_i
-      @team.user1_id = @usersTeam.max{|u| u.rank}.id
-      @usersTeam.delete_if{|u| u.rank == @usersTeam.max.rank}
-      @team.user2_id = @usersTeam.min{|u| u.rank}.id
-      @usersTeam.delete_if{|u| u.rank == @usersTeam.min.rank}
+
+      @team.first_player = @usersTeam.max { |a, b| a.rank <=> b.rank }
+      @team.user1_id = @team.first_player.id
+      @usersTeam.delete_if{ |u| u.id == @team.first_player.id }
+
+      @team.second_player = @usersTeam.min { |a, b| a.rank <=> b.rank }
+      @team.user2_id = @team.second_player.id
+      @usersTeam.delete_if{ |u| u.id == @team.second_player.id }
+
       @team.save
     end
     redirect_to :action => 'index'

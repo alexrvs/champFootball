@@ -18,7 +18,7 @@
         <td><%= full_name_player team.first_player %></td>
         <td><%= full_name_player team.second_player %></td>
         <td><%= link_to 'Edit', :action => 'edit', :id => team.id %></td>
-        <td><%= link_to 'Destroy', {:action => 'destroy', :id => team.id}, :confirm => 'Are you sure?', :method => :post %></td>
+        <td><%= link_to 'Destroy', {:action => 'destroy', :id => team.id}, :confirm => 'Are you sure?', :method => :delete %></td>
       </tr>
   <% end %>
 </table>
