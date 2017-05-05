@@ -4,8 +4,11 @@
   <thead>
   <tr>
     <th>id</th>
-    <th>Teams</th>
+    <th>Team1</th>
+    <th>Team2</th>
+    <th>Count Matches</th>
     <th>Rounds</th>
+    <th>Tournament</th>
     <th colspan="2" aria-valuetext="center">Actions</th>
   </tr>
   </thead>
@@ -13,8 +16,11 @@
   <% @matches.each do |match| %>
       <tr>
         <td><%= link_to match.id, :action => 'show', :id => match.id %></td>
-        <td width="40%"><%= match.id_team %> </td>
-
+        <td><%= link_to match.first_team.name, :action => 'show', :id => match.first_team.id %></td>
+        <td><%= link_to match.second_team.name, :action => 'show', :id => match.second_team.id %></td>
+        <td><%= count_matches(match.first_team.id, match.second_team.id) %></td>
+        <td><%= link_to match.round_id, :action => 'show', :id => match.round_id %></td>
+        <td><%= link_to 'link' + match.tournament_id.to_s, :action => 'show', :id => match.tournament_id %></td>
         <td><%= link_to 'Edit', :action => 'edit', :id => match.id %></td>
         <td><%= link_to 'Destroy', {:action => 'destroy', :id => match.id}, :confirm => 'Are you sure?', :method => :post %></td>
       </tr>

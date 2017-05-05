@@ -3,7 +3,7 @@ class Admin::TeamsController < ApplicationController
 
 
   def index
-    @teams = Team.all
+    @teams = Team.all.order(:id)
   end
 
 

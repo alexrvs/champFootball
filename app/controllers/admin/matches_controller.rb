@@ -60,19 +60,19 @@ class Admin::MatchesController < ApplicationController
     @teams = Team.all
     @count = @teams.count - (@teams.count - 1)
 
-=begin
     @teams.each do |team_first|
       @teams.each do |team_second|
         unless team_first == team_second
-          t_id = team_first.id.to_i
-            @teams_matches = TeamsMatch.new
-            @teams_matches.team_id = t1_id.to_i
-            @teams_matches.matches.build_teams_match
-            @teams_matches.save
+          team_first.matches
+          @match = Match.new
+          @match.tournament_id = 1
+          @match.round_id = 1
+          @match.team1_id = team_first.id
+          @match.team2_id = team_second.id
+          @match.save
         end
       end
     end
-=end
 
     redirect_to :controller => 'matches', :action => 'index'
   end
