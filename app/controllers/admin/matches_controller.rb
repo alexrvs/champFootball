@@ -10,7 +10,7 @@ class Admin::MatchesController < ApplicationController
         @matches = Match.with_player(params[:match][:player_name])
       end
     else
-      @matches = Match.all
+      @matches = Match.order(:id)
     end
   end
 
@@ -47,12 +47,15 @@ class Admin::MatchesController < ApplicationController
   end
 
   def update
+
     @match = Match.find(params[:id])
-    if @match.update_attributes(params[:match])
-      redirect_to :action => 'show', :id => @match.id
-    elsif
-    render 'update'
+
+    if @match.update_attributes!(match_params)
+      redirect_to  :action => 'index'
+    else
+      render :edit
     end
+
   end
 
   # 5. Генерация матчей.
@@ -88,7 +91,7 @@ class Admin::MatchesController < ApplicationController
 
 
   def match_params
-    params.require(:match).permit(:team_name)
+    params.require(:match).permit(:team1_score, :team2_score)
   end
   
 end

@@ -1,0 +1,42 @@
+<h4>Edit Match</h4>
+
+<% provide(:title, 'Edit') %>
+
+<div class="row">
+  <div class="card-panel">
+    <%= form_for(:match,  :url => {:action => 'update'}, :method => 'put') do |f| %>
+        <div class="row">
+
+          <div class="input-field col s3">
+
+                <span id="team1_name"><%= @match.first_team.name.to_s +  '( ' + @match.first_team.first_player.first_name.to_s + '.' +
+                                          @match.first_team.first_player.last_name.chars.first.capitalize.to_s + ' - ' +
+                                          @match.first_team.second_player.first_name.to_s +  '.' +
+                                          @match.first_team.second_player.last_name.chars.first.capitalize.to_s +
+                                              ' ) ' %></span>
+          </div>
+
+          <div class="input-field col s3">
+            <%= f.text_field :team1_score, id:"match_team1_score" %>
+            <%= f.label :team1_score %>
+          </div>
+          <div class="input-field col s3">
+
+            <span id="team2_name"><%= @match.second_team.name.to_s +  '( ' + @match.second_team.first_player.first_name.to_s + '.' +
+                                          @match.second_team.first_player.last_name.chars.first.capitalize.to_s + ' - ' +
+                                          @match.second_team.second_player.first_name.to_s +  '.' +
+                                          @match.second_team.second_player.last_name.chars.first.capitalize.to_s +
+                                          ' ) ' %></span>
+          </div>
+          <div class="input-field col s3">
+            <%= f.text_field :team2_score, id:"match_team2_score" %>
+            <%= f.label :team2_score %>
+          </div>
+
+        </div>
+        <div class="col s12 m4 l3"></div>
+        <%= f.submit  "Update", class: "btn waves-effect waves-light" %>
+    <% end %>
+    <div class="col s12 m4 l3"></div>
+  </div>
+</div>
