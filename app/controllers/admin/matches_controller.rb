@@ -3,7 +3,11 @@ class Admin::MatchesController < ApplicationController
   layout 'admin/admin'
 
   def index
-    @matches = Match.all
+    if  params[:team_name]
+      @matches = Match.with_team(params[:team_name])
+    else
+      @matches = Match.all
+    end
   end
 
 
@@ -21,7 +25,7 @@ class Admin::MatchesController < ApplicationController
   end
 
   def create
-    @match = Match.new(tournament_params)
+    @match = Match.new(match_params)
     if @match.save
       redirect_to :action => 'show', :id => @match.id
     else
@@ -40,7 +44,7 @@ class Admin::MatchesController < ApplicationController
 
   def update
     @match = Match.find(params[:id])
-    if @match.update_attributes(params[:tournament])
+    if @match.update_attributes(params[:match])
       redirect_to :action => 'show', :id => @match.id
     elsif
     render 'update'
@@ -59,13 +63,14 @@ class Admin::MatchesController < ApplicationController
 
     @teams = Team.all
     @count = @teams.count - (@teams.count - 1)
+    @current_tournament = Tournament.find_by(:tournament_type_id => 3)
 
     @teams.each do |team_first|
       @teams.each do |team_second|
         unless team_first == team_second
           team_first.matches
           @match = Match.new
-          @match.tournament_id = 1
+          @match.tournament_id = @current_tournament.id
           @match.round_id = 1
           @match.team1_id = team_first.id
           @match.team2_id = team_second.id
@@ -78,8 +83,8 @@ class Admin::MatchesController < ApplicationController
   end
 
 
-  def tournament_params
-    params.require(:tournament).permit(:name,:description)
+  def match_params
+    params.require(:match).permit(:team_name)
   end
   
 end

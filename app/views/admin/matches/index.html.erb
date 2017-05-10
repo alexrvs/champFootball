@@ -1,5 +1,22 @@
 <h1>Listing Matches</h1>
 
+<div class="row">
+  <div class="card-panel">
+    <div class="col s12 m4 l3"></div>
+    <%= form_for(:match,  :url => {:action => 'index'}, :method => 'get') do |f| %>
+        <div class="row">
+          <div class="input-field col s6">
+            <%= f.text_field :team_name, id: "team_name_filter" %>
+            <%= f.label :team_name %>
+          </div>
+        </div>
+        <%= f.submit  "Search", class: "btn waves-effect waves-light" %>
+    <% end %>
+    <div class="col s12 m4 l3"></div>
+  </div>
+</div>
+
+
 <table class="bordered">
   <thead>
   <tr>

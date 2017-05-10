@@ -6,6 +6,10 @@ class Match < ApplicationRecord
 
     # scope :team, -> (team1_id, team2_id) {where('teams.')}
 
+    scope :with_team, -> (name) {
+        Match.select('*').joins('LEFT JOIN teams ON (teams.id = matches.team1_id OR teams.id = matches.team2_id)').where(" teams.name LIKE ? ", "#{name}%")
+    }
+
   def teams
       Team.select('*').joins('LEFT JOIN matches ON (teams.id  = matches.team1_id OR teams.id = matches.team2_id)').where(['matches.id = ?', self.id])
   end
