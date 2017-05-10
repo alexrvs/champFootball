@@ -1,2 +1,20 @@
-<h1>Admin::Rounds#index</h1>
-<p>Find me in app/views/admin/rounds/index.html.erb</p>
+<h1>Listing Rounds</h1>
+
+<table class="bordered">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th colspan="2" aria-valuetext="center">Action</th>
+  </tr>
+  </thead>
+
+  <% @rounds.each do |team| %>
+      <tr>
+        <td><%= link_to team.name, :action => 'show', :id => team.id %></td>
+        <td><%= link_to 'Edit', :action => 'edit', :id => team.id %></td>
+        <td><%= link_to 'Destroy', {:action => 'destroy', :id => team.id}, :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+  <% end %>
+</table>
+<br />
+<%= link_to 'New Round', {action: 'new'}, {class: "waves-effect waves-light btn"}  %>
