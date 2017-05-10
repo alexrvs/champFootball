@@ -6,6 +6,8 @@ class Team < ApplicationRecord
   # has_many :matches2, :class_name => 'Match', foreign_key: 'team2_id', dependent: :nullify
 
   def matches
-    Match.where('team1_id => ? OR team2_id => ?', self.id, self.id)
+    Match.select('*').joins('LEFT JOIN teams ON (teams.id = matches.team1_id OR teams.id = matches.team2_id)').where(['teams.id = ?', self.id])
   end
+
+
 end
