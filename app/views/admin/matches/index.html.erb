@@ -5,9 +5,13 @@
     <div class="col s12 m4 l3"></div>
     <%= form_for(:match,  :url => {:action => 'index'}, :method => 'get') do |f| %>
         <div class="row">
-          <div class="input-field col s6">
+          <div class="input-field col s3">
             <%= f.text_field :team_name, id: "team_name_filter" %>
             <%= f.label :team_name %>
+          </div>
+          <div class="input-field col s3">
+            <%= f.text_field :player_name, id: "player_name_filter" %>
+            <%= f.label :player_name %>
           </div>
         </div>
         <%= f.submit  "Search", class: "btn waves-effect waves-light" %>
@@ -46,7 +50,7 @@
   <% end %>
 </table>
 <br />
-<%= link_to 'Generate Matches', {action: 'new'}, {class: "waves-effect waves-light btn"}  %>
+<%= link_to 'Generate Matches', {action: 'generate'}, {class: "waves-effect waves-light btn"}  %>
 <div class="fixed-action-btn">
   <%= link_to '<i class="material-icons">add</i>'.html_safe, {action: 'new'},{class: "btn-floating btn-large waves-effect waves-light red"}   %>
 </div>

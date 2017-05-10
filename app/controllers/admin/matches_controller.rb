@@ -3,8 +3,12 @@ class Admin::MatchesController < ApplicationController
   layout 'admin/admin'
 
   def index
-    if  params[:team_name]
-      @matches = Match.with_team(params[:team_name])
+    unless params[:match].nil?
+      if params[:match][:team_name].present? &&  !params[:match][:team_name].blank?
+        @matches = Match.with_team( params[:match][:team_name])
+      elsif params[:match][:player_name].present? && !params[:match][:player_name].blank?
+        @matches = Match.with_player(params[:match][:player_name])
+      end
     else
       @matches = Match.all
     end
