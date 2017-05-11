@@ -68,25 +68,22 @@ class Admin::MatchesController < ApplicationController
 
   def generate
 
-    @teams = Team.all
     @count = @teams.count - (@teams.count - 1)
     @current_tournament = Tournament.find_by(:tournament_type_id => 3)
+    @current_round = Round.first
 
-    @teams.each do |team_first|
-      @teams.each do |team_second|
-        unless team_first == team_second
-          team_first.matches
+    @teamsIds = Team.all.ids
+    @teamCouple = @teamsIds.combination(2).to_a
+
+    @teamCouple.each do |t1_c_id, t2_c_id|
           @match = Match.new
           @match.tournament_id = @current_tournament.id
-          @match.round_id = 1
-          @match.team1_id = team_first.id
-          @match.team2_id = team_second.id
+          @match.round_id = @current_round.id
+          @match.team1_id = t1_c_id
+          @match.team2_id = t2_c_id
           @match.count_matches = 1
           @match.save
         end
-      end
-    end
-
     redirect_to :controller => 'matches', :action => 'index'
   end
 
