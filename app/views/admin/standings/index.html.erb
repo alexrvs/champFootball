@@ -25,9 +25,9 @@
         <td><%= @standings.count_matches_all %></td>
         <td><%= @standings.count_matches_wins %></td>
         <td><%= @standings.count_matches_lose %></td>
-        <td><%= @standings.count_matches_lose %></td>
-        <td><%= @standings.count_matches_lose %></td>
-        <td><%= @standings.count_matches_lose %></td>
+        <td><%= @standings.all_scored_goals.to_s + ' - ' +  @standings.all_missed_goals.to_s %></td>
+        <td><%= @standings.all_scored_goals.to_i - @standings.all_missed_goals.to_i %></td>
+        <td><%= @standings.all_team1_score %></td>
         <td><%= link_to 'Edit', :action => 'edit', :id => team.id %></td>
         <td><%= link_to 'Destroy', {:action => 'destroy', :id => team.id}, :confirm => 'Are you sure?', :method => :delete %></td>
       </tr>

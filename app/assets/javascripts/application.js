@@ -15,12 +15,21 @@
 //= require turbolinks
 //= require materialize-sprockets
 //= require_tree ./public
+//= require jquery-ui
+//= require jquery-ui/core
+//= require jquery-ui/widget
+//= require jquery-ui/position
+//= require jquery-ui/widgets/sortable
 
 $(document).ready(function () {
+
     $(".dropdown-button").dropdown();
 
     $("#card-alert .close").click(function() {
         $(this).closest("#card-alert").fadeOut("slow")
     });
+
+    $( "#sortable" ).sortable();
+    $( "#sortable" ).disableSelection();
 
 });

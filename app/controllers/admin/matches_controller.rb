@@ -89,7 +89,7 @@ class Admin::MatchesController < ApplicationController
 
 
   def match_params
-    params.require(:match).permit(:team1_score, :team2_score)
+    params.require(:match).permit(:team1_score, :team2_score, :team1_count_goals, :team2_count_goals)
   end
   
 end

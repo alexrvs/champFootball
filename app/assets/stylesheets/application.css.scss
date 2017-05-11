@@ -10,6 +10,7 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *
  *= require_tree ./public
  *= require_self
  */
@@ -59,3 +60,5 @@ $secondary-color: color("yellow", "base") !default;
 @import "materialize/components/date_picker/default.date";
 @import "materialize/components/date_picker/default.time";
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
+@import 'jquery-ui/core.css';
+@import 'jquery-ui/sortable.css';

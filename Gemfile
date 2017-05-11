@@ -56,6 +56,8 @@ gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 # Faker
 gem 'faker'
+# jQuery UI sortable
+gem 'jquery-ui-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

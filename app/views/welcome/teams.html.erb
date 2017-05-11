@@ -1,0 +1,23 @@
+<% provide(:title, 'Teams') %>
+<h1>Teams</h1>
+
+<table class="bordered">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Player1</th>
+    <th>Player2</th>
+  </tr>
+  </thead>
+
+  <% @teams.each do |team| %>
+      <tr>
+        <td><%=  team.name %></td>
+        <td width="40%"><%= team.description %> </td>
+        <td><%= full_name_player team.first_player %></td>
+        <td><%= full_name_player team.second_player %></td>
+      </tr>
+  <% end %>
+</table>
+<br />

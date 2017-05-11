@@ -1,36 +1,5 @@
 Rails.application.routes.draw do
 
-
-  namespace :admin do
-    get 'rounds/index'
-  end
-
-  namespace :admin do
-    get 'rounds/show'
-  end
-
-  namespace :admin do
-    get 'rounds/update'
-  end
-
-  namespace :admin do
-    get 'rounds/edit'
-  end
-
-  namespace :admin do
-    get 'rounds/delete'
-  end
-
-  get 'rounds/index'
-
-  get 'rounds/edit'
-
-  get 'rounds/delete'
-
-  get 'rounds/update'
-
-  get 'rounds/show'
-
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   get 'welcome/index'
@@ -45,6 +14,9 @@ Rails.application.routes.draw do
 
   match 'auth/:provider/callback', to: 'sessions#createSocAuth', via: 'get'
   match 'auth/failure', to: redirect('/'), via: 'get'
+
+  match '/teams', to: 'welcome#teams', via: 'get'
+  match '/tournaments', to: 'welcome#tournaments', via: 'get'
   root 'welcome#index'
 
   # Admin Panel

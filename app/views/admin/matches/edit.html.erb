@@ -16,9 +16,13 @@
                                               ' ) ' %></span>
           </div>
 
-          <div class="input-field col s3">
+          <div class="input-field col s1">
             <%= f.text_field :team1_score, id:"match_team1_score" %>
             <%= f.label :team1_score %>
+          </div>
+          <div class="input-field col s2">
+            <%= f.text_field :team1_count_goals, id:"match_team1_count_goals" %>
+            <%= f.label :team1_count_goals %>
           </div>
           <div class="input-field col s3">
 
@@ -28,9 +32,13 @@
                                           @match.second_team.second_player.last_name.chars.first.capitalize.to_s +
                                           ' ) ' %></span>
           </div>
-          <div class="input-field col s3">
+          <div class="input-field col s1">
             <%= f.text_field :team2_score, id:"match_team2_score" %>
             <%= f.label :team2_score %>
+          </div>
+          <div class="input-field col s2">
+            <%= f.text_field :team2_count_goals, id:"match_team2_count_goals" %>
+            <%= f.label :team2_count_goals %>
           </div>
 
         </div>
