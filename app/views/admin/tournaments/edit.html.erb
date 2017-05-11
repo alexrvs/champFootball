@@ -5,7 +5,7 @@
 <div class="row">
   <div class="card-panel">
     <div class="col s12 m4 l3"></div>
-    <%= form_for(:tournament,  :url => {:action => 'update'}) do |f| %>
+    <%= form_for(:tournament,  :url => {:action => 'update'}, :method => 'put') do |f| %>
         <div class="row">
           <div class="input-field col s6">
             <%= f.text_field :name, id: "tournament_name" %>
@@ -22,7 +22,7 @@
         <div class="col s12 m4 l3"></div>
         <div class="row">
           <div class="input-field col s6">
-            <select>
+            <select id="tournament_status_list">
               <% @tournaments_type.each do |type| %>
                   <% if :tournament_type_id == type.id %>
                   <option selected value="<%= type.id %>"><%= type.name %></option>
@@ -31,6 +31,7 @@
                   <% end %>
               <% end %>
             </select>
+            <%= f.hidden_field :tournament_type_id, id: "tournament_type_id" %>
             <label>Status Tournament</label>
           </div>
         </div>

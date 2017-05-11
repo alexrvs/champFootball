@@ -40,16 +40,19 @@ class Admin::TournamentsController < ApplicationController
 
   def update
     @tournament = Tournament.find(params[:id])
-    if @tournament.update_attributes(params[:tournament])
-      redirect_to :action => 'show', :id => @tournament.id
-    elsif
-      render 'update'
+
+    if @tournament.update_attributes(tournament_params)
+      redirect_to  :action => 'index'
+    else
+      render :edit
     end
+
+
   end
 
 
   def tournament_params
-    params.require(:tournament).permit(:name,:description)
+    params.require(:tournament).permit(:name,:description,:tournament_type_id)
   end
 
 end

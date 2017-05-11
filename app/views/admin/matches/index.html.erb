@@ -42,7 +42,7 @@
         <td><%= link_to match.second_team.name, :action => 'show', :id => match.second_team.id %></td>
         <td><%= count_matches(match.first_team.id, match.second_team.id) %></td>
         <td><%= link_to match.round.name, :action => 'show', :id => match.round_id %></td>
-        <td><%= link_to match.tournament_id.to_s, :action => 'show', :id => match.tournament_id %></td>
+        <td><%= link_to match.tournament.name, :action => 'show', :id => match.tournament_id %></td>
         <td><%= match.team1_score.to_s + ':' + match.team2_score.to_s %></td>
         <td><%= link_to 'Edit', :action => 'edit', :id => match.id %></td>
         <td><%= link_to 'Destroy', {:action => 'destroy', :id => match.id}, :confirm => 'Are you sure?', :method => :post %></td>

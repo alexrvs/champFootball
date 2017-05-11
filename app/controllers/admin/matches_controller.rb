@@ -81,6 +81,7 @@ class Admin::MatchesController < ApplicationController
           @match.round_id = 1
           @match.team1_id = team_first.id
           @match.team2_id = team_second.id
+          @match.count_matches = 1
           @match.save
         end
       end
