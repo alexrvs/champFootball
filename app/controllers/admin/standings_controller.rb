@@ -4,20 +4,7 @@ class Admin::StandingsController < ApplicationController
 
 
   def index
-    @teams = Team.find(53)
-    Team.select('')
-    Team.('SELECT *, count(*) AS count_matches_all,
-                            (SELECT  count(*) FROM matches WHERE matches.team1_id = teams.id AND matches.team1_score <> 0) as count_matches_wins,
-                            (SELECT  count(*) FROM matches WHERE matches.team1_id = teams.id AND
-                                                                 (matches.team1_score = 0 AND matches.team2_score > 0 )) as count_matches_lose,
-                            (SELECT SUM(team1_score) FROM matches  WHERE matches.team1_id = teams.id GROUP BY teams.id) as all_team1_score,
-                            (SELECT SUM(team2_score) FROM matches  WHERE matches.team2_id <> teams.id
-                                                                         AND matches.team1_id = teams.id GROUP BY teams.id) as all_missed_goals
-                          FROM teams LEFT JOIN matches ON (teams.id = matches.team1_id)
-                          WHERE teams.id = ?
-                          GROUP BY teams.id, matches.team1_id, matches.id', 53)
-    @st = Team.standings(@teams.id)
-
+    @teams = Team.all
   end
 
 

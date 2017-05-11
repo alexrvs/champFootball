@@ -11,7 +11,8 @@ class Team < ApplicationRecord
   }
 
   scope :standings, -> (team_id) {
-    Team.find_by_sql('SELECT *, count(*) AS count_matches_all,
+    Team.find_by_sql('SELECT *,
+                            (SELECT  count(*) FROM matches WHERE matches.team1_id = teams.id OR matches.team2_id = teams.id) as count_matches_all,
                             (SELECT  count(*) FROM matches WHERE matches.team1_id = teams.id AND matches.team1_score <> 0) as count_matches_wins,
                             (SELECT  count(*) FROM matches WHERE matches.team1_id = teams.id AND
                                                                  (matches.team1_score = 0 AND matches.team2_score > 0 )) as count_matches_lose,
@@ -19,8 +20,7 @@ class Team < ApplicationRecord
                             (SELECT SUM(team2_score) FROM matches  WHERE matches.team2_id <> teams.id
                                                                          AND matches.team1_id = teams.id GROUP BY teams.id) as all_missed_goals
                           FROM teams LEFT JOIN matches ON (teams.id = matches.team1_id)
-                          WHERE teams.id = ?
-                          GROUP BY teams.id, matches.team1_id, matches.id',53.to_i)
+                          WHERE teams.id = ' + team_id.to_s + 'GROUP BY teams.id, matches.team1_id, matches.id')
   }
 
   def matches

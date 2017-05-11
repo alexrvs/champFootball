@@ -18,16 +18,16 @@
   </thead>
 
   <% @teams.each do |team| %>
-
+      <% @standings = Team.standings(team.id).first %>
       <tr>
         <td></td>
         <td><%= team.name %></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td><%= @standings.count_matches_all %></td>
+        <td><%= @standings.count_matches_wins %></td>
+        <td><%= @standings.count_matches_lose %></td>
+        <td><%= @standings.count_matches_lose %></td>
+        <td><%= @standings.count_matches_lose %></td>
+        <td><%= @standings.count_matches_lose %></td>
         <td><%= link_to 'Edit', :action => 'edit', :id => team.id %></td>
         <td><%= link_to 'Destroy', {:action => 'destroy', :id => team.id}, :confirm => 'Are you sure?', :method => :delete %></td>
       </tr>

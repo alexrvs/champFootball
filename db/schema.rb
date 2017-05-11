@@ -10,21 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170510124343) do
+ActiveRecord::Schema.define(version: 20170511124929) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "matches", force: :cascade do |t|
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.integer  "tournament_id"
     t.integer  "round_id"
     t.integer  "team1_id"
     t.integer  "team2_id"
     t.integer  "count_matches"
-    t.integer  "team1_score",   default: 0
-    t.integer  "team2_score",   default: 0
+    t.integer  "team1_score",       default: 0
+    t.integer  "team2_score",       default: 0
+    t.integer  "team1_count_goals"
+    t.integer  "team2_count_goals"
   end
 
   create_table "rounds", force: :cascade do |t|
