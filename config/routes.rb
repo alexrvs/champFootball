@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   match '/teams', to: 'welcome#teams', via: 'get'
   match '/tournaments', to: 'welcome#tournaments', via: 'get'
+  match '/rank', to: 'welcome#users', via: 'get'
   root 'welcome#index'
 
   # Admin Panel
