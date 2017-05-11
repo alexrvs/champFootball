@@ -17,15 +17,22 @@
   </tr>
   </thead>
 
+  <% @standings.each do |team| %>
       <tr>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
+        <td></td>
+        <td><%= team.name %></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><%= link_to 'Edit', :action => 'edit', :id => team.id %></td>
+        <td><%= link_to 'Destroy', {:action => 'destroy', :id => team.id}, :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+  <% end %>
+      <tr>
+
       </tr>
 
 </table>

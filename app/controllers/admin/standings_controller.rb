@@ -9,7 +9,7 @@ class Admin::StandingsController < ApplicationController
 
 
   def show
-    @standings = Team.find(params[:id])
+    @standings = Team.all
 
   end
 
