@@ -1,0 +1,16 @@
+<table class="bordered">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+
+  <% @tournaments.each do |tournament| %>
+      <tr>
+        <td><%=  tournament.name %></td>
+        <td><%= tournament.description %> </td>
+       </tr>
+  <% end %>
+</table>
+<br />

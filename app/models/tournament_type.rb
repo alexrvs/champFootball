@@ -1,3 +1,5 @@
 class TournamentType < ApplicationRecord
-  has_one :tournament
+  # attr_accessor :id
+
+  belongs_to :tournament
 end
