@@ -22,3 +22,14 @@ Things you may want to cover:
 * Deployment instructions
 
 
+An example of a deployed application on heroku :
+
+    https://stark-everglades-55052.herokuapp.com/
+        
+Admin Panel:
+    
+    https://stark-everglades-55052.herokuapp.com/admin
+
+      
+
+         
