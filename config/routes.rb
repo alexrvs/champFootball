@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :user_ranks
+
   get 'welcome/index'
 
   match '/signup', to: 'users#new', via: 'get'
@@ -17,7 +19,9 @@ Rails.application.routes.draw do
 
   match '/teams', to: 'welcome#teams', via: 'get'
   match '/tournaments', to: 'welcome#tournaments', via: 'get'
-  match '/rank', to: 'welcome#users', via: 'get'
+  match '/rank', to: 'user_ranks#index', via: 'get'
+
+
   root 'welcome#index'
 
   # Admin Panel

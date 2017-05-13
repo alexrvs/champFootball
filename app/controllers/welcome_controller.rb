@@ -27,4 +27,9 @@ class WelcomeController < ApplicationController
 
   end
 
+
+  def rank
+
+  end
+
 end

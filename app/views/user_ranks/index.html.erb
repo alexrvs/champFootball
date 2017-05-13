@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="card-panel">
+    <h4>Rank User</h4>
+    <ul id="sortable" class="collection">
+      <% @users.each do |user| %>
+          <li class="ui-state-default collection-item"><%= user.rank %>
+            <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+            <%= full_name user %>
+            <div class="newRank" style="display: none" data-newrank="<%= user.rank %>">
+              <input type="hidden" class="user_id_vote_rank" value="<%= user.id %>" />
+            </div>
+          </li>
+      <% end %>
+    </ul>
+
+    <%= form_for(@rank) do |f| %>
+        <div class="row">
+          <div class="input-field col s12">
+            <%= f.hidden_field :rank, id: "vote_users" %>
+          </div>
+        </div>
+        <%= f.submit  "Vote", class: "btn waves-effect waves-light"  %>
+    <% end %>
+  </div>
+</div>
