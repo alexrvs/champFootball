@@ -68,7 +68,7 @@ class Admin::MatchesController < ApplicationController
 
   def generate
 
-    @count = @teams.count - (@teams.count - 1)
+    # @count = @teams.count - (@teams.count - 1)
     @current_tournament = Tournament.find_by(:tournament_type_id => 3)
     @current_round = Round.first
 
