@@ -23,7 +23,7 @@ class WelcomeController < ApplicationController
   end
 
   def users
-    @users = User.without_admin
+    @users = User.without_admin.order(:rank)
 
   end
 
