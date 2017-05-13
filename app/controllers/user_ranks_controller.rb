@@ -27,17 +27,8 @@ class UserRanksController < ApplicationController
         @userRankItem.user_vote_id = 23
         @userRankItem.save
       end
-      redirect_to :action => 'message'
+      render 'message'
     end
-
-
-=begin
-    if @ranks.save
-      redirect_to :action => 'message'
-    else
-      render :action => 'new'
-    end
-=end
 
   end
 
