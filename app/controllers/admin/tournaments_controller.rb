@@ -33,7 +33,7 @@ class Admin::TournamentsController < ApplicationController
   end
 
   def edit
-    @tournament = Tournament.find(params[:id])
+    @tournament = Tournament.with_new_teams(params[:id])
     @tournaments_type = TournamentType.all
 
   end

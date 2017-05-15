@@ -3,9 +3,40 @@
 <div class="row">
   <%= @tournament.description %>
 </div>
-
-
 <p>Created: <i><%= time_ago_in_words(@tournament.created_at) %> ago</i></p>
+<br />
+<%= link_to 'Edit', {action: 'edit', :id => @tournament.id}, {class: "waves-effect waves-light btn"}  %>
+<%= link_to 'Back', {:action => nil},{class: "waves-effect waves-light btn"}   %>
 
-<%= link_to 'Edit', :action => 'edit', :id => @tournament.id %> |
-<%= link_to 'Back', :action => nil %>
+<h4>Relation Matches</h4>
+
+<table class="bordered">
+  <thead>
+  <tr>
+    <th>id</th>
+    <th>Team1</th>
+    <th>Team2</th>
+    <th>Count Matches</th>
+    <th>Rounds</th>
+    <th>Tournament</th>
+    <th>Score</th>
+    <th colspan="2" aria-valuetext="center">Actions</th>
+  </tr>
+  </thead>
+
+  <% @tournament.matches.each do |match| %>
+      <tr>
+        <td><%= link_to match.id, :action => 'show', :id => match.id %></td>
+        <td><%= link_to match.first_team.name, :action => 'show', :id => match.first_team.id %></td>
+        <td><%= link_to match.second_team.name, :action => 'show', :id => match.second_team.id %></td>
+        <td><%= count_matches(match.first_team.id, match.second_team.id) %></td>
+        <td><%= link_to match.round.name, :action => 'show', :id => match.round_id %></td>
+        <td><%= link_to match.tournament.name, :action => 'show', :id => match.tournament_id %></td>
+        <td><%= match.team1_score.to_s + ':' + match.team2_score.to_s %></td>
+        <td><%= link_to 'Edit', :action => 'edit', :id => match.id %></td>
+        <td><%= link_to 'Destroy', {:action => 'destroy', :id => match.id}, :confirm => 'Are you sure?', :method => :post %></td>
+      </tr>
+  <% end %>
+</table>
+<br />
+

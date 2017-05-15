@@ -35,6 +35,18 @@
             <label>Status Tournament</label>
           </div>
         </div>
+        <div class="col s12 m4 l3"></div>
+        <div class="row">
+          <div class="input-field col s6">
+            <select id="tournament_status_list">
+              <% @tournament.teams.each do |team| %>
+                    <option value="<%= team.id %>"><%= team.name %></option>
+              <% end %>
+            </select>
+            <%= f.hidden_field :id, id: "tournament_id" %>
+            <label>Appoint a Team</label>
+          </div>
+        </div>
         <%= f.submit  "Update", class: "btn waves-effect waves-light" %>
     <% end %>
     <div class="col s12 m4 l3"></div>

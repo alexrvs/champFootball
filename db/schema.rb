@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170513122123) do
+ActiveRecord::Schema.define(version: 20170515084556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,10 +40,11 @@ ActiveRecord::Schema.define(version: 20170513122123) do
     t.string   "name"
     t.string   "description"
     t.integer  "points_count"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "user1_id"
     t.integer  "user2_id"
+    t.integer  "tournament_id"
   end
 
   create_table "teams_matches", force: :cascade do |t|
@@ -79,15 +80,6 @@ ActiveRecord::Schema.define(version: 20170513122123) do
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.integer  "tournament_type_id"
-  end
-
-  create_table "user_rank", force: :cascade do |t|
-    t.integer  "user_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.integer  "tournament_id"
-    t.integer  "user_vote_id"
-    t.integer  "rank"
   end
 
   create_table "user_ranks", force: :cascade do |t|
