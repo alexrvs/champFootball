@@ -85,19 +85,15 @@ class Admin::TeamsController < ApplicationController
 
   def generate_rank_user
 
-    @userRank = User.all
-    @arr_ranks = Hash.new
-    @gArr = Array.new
+    @userRank = User.without_admin
     @userRank.each do |user|
-
       @averageRank = UserRank.avg_rank user.id
-
-      @arr_ranks["user_id"] = user.id.to_i
-      @arr_ranks["rank"] = @averageRank.mid_rank.to_i
-      @gArr << @arr_ranks
+      user.rank = @averageRank.to_i
+      if user.valid?
+        user.save
+      end
     end
-
-
+    redirect_to :action => 'index'
   end
 
 
