@@ -37,7 +37,7 @@ module SessionsHelper
   end
 
   def current_team
-     Team.with_current_user self.current_user.id
+      Team.with_current_user self.current_user.id
   end
 
   def current_tournament

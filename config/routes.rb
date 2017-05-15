@@ -20,7 +20,9 @@ Rails.application.routes.draw do
   match '/teams', to: 'welcome#teams', via: 'get'
   match '/tournaments', to: 'welcome#tournaments', via: 'get'
   match '/rank', to: 'user_ranks#index', via: 'get'
-
+  match 'team/:id' => 'welcome#editTeamByUser', via: 'post'
+  match 'add_team_to_tournament', to:'tournaments#addTeamToTournament', via: 'post'
+  match 'showTeam', to:'welcome#showTeamCurrentUser', via: 'get'
 
   root 'welcome#index'
 
@@ -42,7 +44,7 @@ Rails.application.routes.draw do
     get 'generate', to: 'teams#generate'
     get 'generate_matches', to: 'matches#index_generate'
     get 'generate_matches_round', to:'matches#generate'
-    post 'add_team_to_tournament', to:'tournaments#addTeamToTournament'
+
 
   end
 end

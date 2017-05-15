@@ -1,0 +1,59 @@
+<% provide(:title, 'Teams') %>
+
+<div class="row">
+  <div class="card-panel">
+    <h4><%= @team.name %></h4>
+    <div class="row">
+      <div class="input-field col s3">
+        Name:
+      </div>
+      <div class="input-field col s3">
+        <%= @team.name %>
+      </div>
+  </div>
+    <div class="row">
+      <div class="input-field col s3">
+        Description:
+      </div>
+      <div class="input-field col s3">
+        <%= @team.description %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s3">
+        Player1:
+      </div>
+      <div class="input-field col s3">
+        <% if @team.first_player.id == getIdCurrentUser %>
+        <%= full_name(@team.first_player).to_s + ' (You)' %>
+        <% else %>
+            <%= full_name @team.first_player %>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s3">
+        Player2:
+      </div>
+      <div class="input-field col s3">
+        <%= full_name @team.second_player %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s3">
+        Tournament:
+      </div>
+      <div class="input-field col s3">
+        <%= @team.tournament.name %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s3">
+        Created:
+      </div>
+      <div class="input-field col s3">
+        <%= time_ago_in_words(@team.created_at) %>
+      </div>
+    </div>
+  </div>
+</div>
