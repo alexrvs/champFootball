@@ -23,6 +23,10 @@ class Team < ApplicationRecord
                           WHERE teams.id = ' + team_id.to_s + 'GROUP BY teams.id, matches.team1_id, matches.id')
   }
 
+  scope :with_player, -> (first_name, last_name){
+    Team.select('*').joins('LEFT JOIN users ON (users.id = teams.user1_id OR users.id = teams.user2_id)').where('users.first_name LIKE ? OR  users.last_name LIKE ?', "#{first_name}%", "#{last_name}%")
+  }
+
   def matches
     Match.select('*').joins('LEFT JOIN teams ON (teams.id = matches.team1_id OR teams.id = matches.team2_id)').where(['teams.id = ?', self.id])
   end

@@ -1,23 +1,43 @@
 <% provide(:title, 'Teams') %>
-<h1>Teams</h1>
+<div class="row">
+  <div class="card-panel">
 
-<table class="bordered">
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Player1</th>
-    <th>Player2</th>
-  </tr>
-  </thead>
+    <h1>Teams</h1>
 
-  <% @teams.each do |team| %>
+    <%= form_for(:team,  :url => {:action => 'teams'}, :method => 'get') do |f| %>
+        <div class="row">
+          <div class="input-field col s3">
+            <%= f.text_field :team_name, id: "team_name_filter" %>
+            <%= f.label :team_name %>
+          </div>
+          <div class="input-field col s3">
+            <%= f.text_field :player_name, id: "player_name_filter" %>
+            <%= f.label :player_name %>
+          </div>
+          <div class="input-field col s3">
+            <%= f.submit  "Search", class: "btn waves-effect waves-light" %>
+          </div>
+        </div>
+    <% end %>
+
+    <table class="bordered">
+      <thead>
       <tr>
-        <td><%=  team.name %></td>
-        <td width="40%"><%= team.description %> </td>
-        <td><%= full_name_player team.first_player %></td>
-        <td><%= full_name_player team.second_player %></td>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Player1</th>
+        <th>Player2</th>
       </tr>
-  <% end %>
-</table>
-<br />
+      </thead>
+
+      <% @teams.each do |team| %>
+          <tr>
+            <td><%=  team.name %></td>
+            <td width="40%"><%= team.description %> </td>
+            <td><%= full_name_player team.first_player %></td>
+            <td><%= full_name_player team.second_player %></td>
+          </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

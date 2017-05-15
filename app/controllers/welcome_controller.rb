@@ -15,7 +15,12 @@ class WelcomeController < ApplicationController
   end
 
   def teams
-    @teams = Team.all
+    unless params[:team].nil?
+      @teams = Team.with_player(params[:team][:player_name], params[:team][:player_name])
+    else
+      @teams = Team.all
+    end
+
   end
 
   def show
@@ -28,8 +33,8 @@ class WelcomeController < ApplicationController
   end
 
 
-  def rank
-
+  def teams_params
+    params.require(:team).permit(:player_name)
   end
 
 end
