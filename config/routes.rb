@@ -42,6 +42,7 @@ Rails.application.routes.draw do
     get 'generate', to: 'teams#generate'
     get 'generate_matches', to: 'matches#index_generate'
     get 'generate_matches_round', to:'matches#generate'
+    post 'add_team_to_tournament', to:'tournaments#addTeamToTournament'
 
   end
 end
