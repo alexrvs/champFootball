@@ -98,3 +98,6 @@ html {
     float: right;
 }
 
+.collection .collection-item{
+    margin: 5px !important;
+}

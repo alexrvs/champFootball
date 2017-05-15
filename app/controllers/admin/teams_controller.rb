@@ -83,6 +83,24 @@ class Admin::TeamsController < ApplicationController
   end
 
 
+  def generate_rank_user
+
+    @userRank = User.all
+    @arr_ranks = Hash.new
+    @gArr = Array.new
+    @userRank.each do |user|
+
+      @averageRank = UserRank.avg_rank user.id
+
+      @arr_ranks["user_id"] = user.id.to_i
+      @arr_ranks["rank"] = @averageRank.mid_rank.to_i
+      @gArr << @arr_ranks
+    end
+
+
+  end
+
+
   def team_params
     params.require(:team).permit(:name,:description, :points_count)
   end
