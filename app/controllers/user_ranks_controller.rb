@@ -1,6 +1,6 @@
 class UserRanksController < ApplicationController
 
-
+  include SessionsHelper
 
   def index
     @users = User.without_admin.order(:rank)
@@ -18,13 +18,14 @@ class UserRanksController < ApplicationController
     if params[:user_rank][:rank].present? &&  !params[:user_rank][:rank].blank?
       @vote_result = params[:user_rank][:rank]
       @hash_vote = JSON.parse @vote_result
+      @new_tournament = Tournament.with_status('open')
 
       @hash_vote.each do |vote|
         @userRankItem = UserRank.new
         @userRankItem.user_id = vote["user_id"].to_i
         @userRankItem.rank = vote["rank"].to_i
-        @userRankItem.tournament_id = 1
-        @userRankItem.user_vote_id = 23
+        @userRankItem.tournament_id = @new_tournament.first.id
+        @userRankItem.user_vote_id = getIdCurrentUser
         @userRankItem.save
       end
       render 'message'
