@@ -20,7 +20,8 @@ Rails.application.routes.draw do
   match '/teams', to: 'welcome#teams', via: 'get'
   match '/tournaments', to: 'welcome#tournaments', via: 'get'
   match '/rank', to: 'user_ranks#index', via: 'get'
-  match 'team/:id' => 'welcome#editTeamByUser', via: 'post'
+  match 'team/:id' => 'welcome#editTeamByUser', via: 'get'
+  match 'team/:id' => 'welcome#updateTeamByUser', via: 'post'
   match 'add_team_to_tournament', to:'tournaments#addTeamToTournament', via: 'post'
   match 'showTeam', to:'welcome#showTeamCurrentUser', via: 'get'
 

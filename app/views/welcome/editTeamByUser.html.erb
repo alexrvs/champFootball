@@ -1,10 +1,9 @@
 <% provide(:title, 'Edit User') %>
 <div class="row">
   <div class="card-panel">
-    <h1 align="center" id="title_page">Edit Name Team</h1>
+    <h1 align="center" id="title_page">Edit Team</h1>
     <div class="col s12 m4 l3"></div>
-    <%= form_for(@team,:html => {:class => "col s6 m4 l6"}) do |f| %>
-        <%= render 'shared/error_messages' %>
+    <%= form_for(:team,  :html => {:class => "col s6 m4 l6"}) do |f| %>
         <div class="row">
           <div class="input-field col s6">
             <%= f.text_field :name, id: "team_name" %>

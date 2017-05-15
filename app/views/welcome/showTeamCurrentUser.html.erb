@@ -55,5 +55,10 @@
         <%= time_ago_in_words(@team.created_at) %>
       </div>
     </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <%= link_to 'Edit', :action => 'editTeamByUser', :id => @team.id %>
+      </div>
+    </div>
   </div>
 </div>
