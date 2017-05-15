@@ -37,4 +37,8 @@ module SessionsHelper
     @current_user ||= User.find_by(remember_token: remember_token)
     @current_user.id
   end
+
+  def current_team
+     Team.with_current_user self.current_user.id
+  end
 end

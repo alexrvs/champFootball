@@ -27,6 +27,10 @@ class Team < ApplicationRecord
     Team.select('*').joins('LEFT JOIN users ON (users.id = teams.user1_id OR users.id = teams.user2_id)').where('users.first_name LIKE ? OR  users.last_name LIKE ?', "#{first_name}%", "#{last_name}%")
   }
 
+  scope :with_current_user, -> (user_id){
+    where('teams.user1_id = ? OR teams.user2_id = ?', user_id, user_id)
+  }
+
   def matches
     Match.select('*').joins('LEFT JOIN teams ON (teams.id = matches.team1_id OR teams.id = matches.team2_id)').where(['teams.id = ?', self.id])
   end

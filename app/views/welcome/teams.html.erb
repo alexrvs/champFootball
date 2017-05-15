@@ -29,10 +29,14 @@
         <th>Player2</th>
       </tr>
       </thead>
-
+      <% @current_team = current_team %>
       <% @teams.each do |team| %>
           <tr>
-            <td><%=  team.name %></td>
+            <% if team.id == @current_team.ids.first %>
+                <td><%= link_to team.name, teams_path %></td>
+            <% else %>
+                <td><%=  team.name %></td>
+            <% end %>
             <td width="40%"><%= team.description %> </td>
             <td><%= full_name_player team.first_player %></td>
             <td><%= full_name_player team.second_player %></td>
