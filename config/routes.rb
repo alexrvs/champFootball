@@ -22,7 +22,6 @@ Rails.application.routes.draw do
   match '/rank', to: 'user_ranks#index', via: 'get'
   match 'team/:id' => 'welcome#editTeamByUser', via: 'get'
   match 'team/:id' => 'welcome#updateTeamByUser', via: 'post'
-  match 'add_team_to_tournament', to:'tournaments#addTeamToTournament', via: 'post'
   match 'showTeam', to:'welcome#showTeamCurrentUser', via: 'get'
 
   root 'welcome#index'
@@ -46,6 +45,7 @@ Rails.application.routes.draw do
     get 'generate_matches', to: 'matches#index_generate'
     get 'generate_matches_round', to:'matches#generate'
     get 'close_vote', to:'teams#generate_rank_user', via:'get'
+    match 'add_team_to_tournament', to:'tournaments#addTeamToTournament', via: 'post'
 
   end
 end
