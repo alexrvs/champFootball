@@ -37,6 +37,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def users
+    @users = User.without_admin.order(:rank)
+  end
+
   def user_params
     params.require(:user).permit(:first_name,:last_name,:email,:password,:password_confirmation)
   end

@@ -1,6 +1,7 @@
 class Admin::TeamsController < ApplicationController
   layout 'admin/admin'
 
+  before_action :find_team, only: [:show]
 
   def index
     @teams = Team.all.order(:id)
@@ -51,7 +52,7 @@ class Admin::TeamsController < ApplicationController
     @countTeams = (@usersTeam.count/2).to_i
 
     @countTeams.times do |i|
-      @team = Team.new
+      @team = Team.find(params[:id])
       @team.name = 'Team ' + (i+1).to_s
       @team.description = 'Default Description' + @team.name.to_s
       @team.points_count = (i+1).to_i
@@ -86,6 +87,10 @@ class Admin::TeamsController < ApplicationController
 
   def team_params
     params.require(:team).permit(:name,:description, :points_count)
+  end
+
+  def find_team
+    @team = Team.find(params[:id])
   end
 
 end

@@ -52,11 +52,3 @@ $secondary-color: color("yellow", "base") !default;
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 
 
-#slide-out, .nav-wrapper, .page-footer{
-  @extend .blue-grey, .darken-3;
-  @extend .white-text, .text-lighten-4;
-  color: white;
-}
-.side-nav > li a{
-  color:white;
-}

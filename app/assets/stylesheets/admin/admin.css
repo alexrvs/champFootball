@@ -146,3 +146,12 @@ ul.side-nav.leftside-navigation {
 .fixed-action-btn{
     bottom: 80px !important;
 }
+
+#slide-out, .nav-wrapper, .page-footer{
+@extend .blue-grey, .darken-3;
+@extend .white-text, .text-lighten-4;
+    color: white;
+}
+.side-nav > li a{
+    color:white;
+}

@@ -17,12 +17,12 @@ Rails.application.routes.draw do
   match 'auth/:provider/callback', to: 'sessions#createSocAuth', via: 'get'
   match 'auth/failure', to: redirect('/'), via: 'get'
 
-  match '/teams', to: 'welcome#teams', via: 'get'
-  match '/tournaments', to: 'welcome#tournaments', via: 'get'
+  match '/teams', to: 'teams#index', via: 'get'
+  match '/tournaments', to: 'tournaments#index', via: 'get'
   match '/rank', to: 'user_ranks#index', via: 'get'
-  match 'team/:id' => 'welcome#editTeamByUser', via: 'get'
-  match 'team/:id' => 'welcome#updateTeamByUser', via: 'post'
-  match 'showTeam', to:'welcome#showTeamCurrentUser', via: 'get'
+  match 'team/:id' => 'teams#editTeamByUser', via: 'get'
+  match 'team/:id' => 'teams#updateTeamByUser', via: 'post'
+  match 'showTeam', to:'teams#showTeamCurrentUser', via: 'get'
 
   root 'welcome#index'
 
