@@ -28,3 +28,5 @@
 # config for facebook
 /config/facebook.yml
 Будет удалено .idea/
+
+/public/assets/

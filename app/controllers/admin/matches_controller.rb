@@ -62,21 +62,7 @@ class Admin::MatchesController < ApplicationController
 
   def generate
 
-    @current_tournament_id = Match.get_id_current_tournament
-    @current_round = Round.first
-
-    @teamsIds = Team.all.ids
-    @teamCouple = @teamsIds.combination(2).to_a
-
-    @teamCouple.each do |t1_c_id, t2_c_id|
-          @match = Match.new
-          @match.tournament_id = @current_tournament_id.ids
-          @match.round_id = @current_round.id
-          @match.team1_id = t1_c_id
-          @match.team2_id = t2_c_id
-          @match.count_matches = 1
-          @match.save
-        end
+    Match.generate_matches
     redirect_to :controller => 'matches', :action => 'index'
   end
 

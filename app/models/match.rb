@@ -24,5 +24,24 @@ class Match < ApplicationRecord
       Tournament.select('*').joins('LEFT JOIN tournament_types ON tournament_types.id = tournaments.tournament_type_id').where('tournament_types.name = \'current\'')
   end
 
+  def self.generate_matches
+
+    @current_tournament_id = self.get_id_current_tournament
+    @current_round = Round.first
+
+    @teamsIds = Team.all.ids
+    @teamCouple = @teamsIds.combination(2).to_a
+
+    @teamCouple.each do |t1_c_id, t2_c_id|
+      @match = self.new
+      @match.tournament_id = @current_tournament_id.ids
+      @match.round_id = @current_round.id
+      @match.team1_id = t1_c_id
+      @match.team2_id = t2_c_id
+      @match.count_matches = 1
+      @match.save
+    end
+  end
+
 end
 
