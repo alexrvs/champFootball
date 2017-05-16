@@ -62,8 +62,7 @@ class Admin::MatchesController < ApplicationController
 
   def generate
 
-    # @count = @teams.count - (@teams.count - 1)
-    @current_tournament = Tournament.find_by(:tournament_type_id => 3)
+    @current_tournament_id = Match.get_id_current_tournament
     @current_round = Round.first
 
     @teamsIds = Team.all.ids
@@ -71,7 +70,7 @@ class Admin::MatchesController < ApplicationController
 
     @teamCouple.each do |t1_c_id, t2_c_id|
           @match = Match.new
-          @match.tournament_id = @current_tournament.id
+          @match.tournament_id = @current_tournament_id.ids
           @match.round_id = @current_round.id
           @match.team1_id = t1_c_id
           @match.team2_id = t2_c_id

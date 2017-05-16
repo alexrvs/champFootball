@@ -19,5 +19,10 @@ class Match < ApplicationRecord
   def teams
       Team.select('*').joins('LEFT JOIN matches ON (teams.id  = matches.team1_id OR teams.id = matches.team2_id)').where(['matches.id = ?', self.id])
   end
+
+  def self.get_id_current_tournament
+      Tournament.select('*').joins('LEFT JOIN tournament_types ON tournament_types.id = tournaments.tournament_type_id').where('tournament_types.name = \'current\'')
+  end
+
 end
 
