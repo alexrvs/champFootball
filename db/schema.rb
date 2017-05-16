@@ -25,8 +25,8 @@ ActiveRecord::Schema.define(version: 20170515084556) do
     t.integer  "count_matches"
     t.integer  "team1_score",       default: 0
     t.integer  "team2_score",       default: 0
-    t.integer  "team1_count_goals"
-    t.integer  "team2_count_goals"
+    t.integer  "team1_count_goals", default: 0
+    t.integer  "team2_count_goals", default: 0
   end
 
   create_table "rounds", force: :cascade do |t|
