@@ -16,6 +16,7 @@ class Admin::TournamentsController < ApplicationController
   def new
     @tournament = Tournament.new
     @tournaments_type = TournamentType.all
+    byebug
   end
 
   def create
