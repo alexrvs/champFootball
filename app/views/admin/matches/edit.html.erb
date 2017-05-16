@@ -9,11 +9,7 @@
 
           <div class="input-field col s3">
 
-                <span id="team1_name"><%= @match.first_team.name.to_s +  '( ' + @match.first_team.first_player.first_name.to_s + '.' +
-                                          @match.first_team.first_player.last_name.chars.first.capitalize.to_s + ' - ' +
-                                          @match.first_team.second_player.first_name.to_s +  '.' +
-                                          @match.first_team.second_player.last_name.chars.first.capitalize.to_s +
-                                              ' ) ' %></span>
+                <span id="team1_name"><%= first_team_with_players_name @match %></span>
           </div>
 
           <div class="input-field col s1">
@@ -26,11 +22,7 @@
           </div>
           <div class="input-field col s3">
 
-            <span id="team2_name"><%= @match.second_team.name.to_s +  '( ' + @match.second_team.first_player.first_name.to_s + '.' +
-                                          @match.second_team.first_player.last_name.chars.first.capitalize.to_s + ' - ' +
-                                          @match.second_team.second_player.first_name.to_s +  '.' +
-                                          @match.second_team.second_player.last_name.chars.first.capitalize.to_s +
-                                          ' ) ' %></span>
+            <span id="team2_name"><%= second_team_with_players_name @match  %></span>
           </div>
           <div class="input-field col s1">
             <%= f.text_field :team2_score, id:"match_team2_score" %>

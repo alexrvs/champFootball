@@ -1,4 +1,4 @@
-class Tournaments < ApplicationController
+class TournamentsController < ApplicationController
 
   layout 'application'
 

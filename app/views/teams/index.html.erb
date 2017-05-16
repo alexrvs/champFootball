@@ -4,7 +4,7 @@
 
     <h1>Teams</h1>
 
-    <%= form_for(:team,  :url => {:action => 'teams'}, :method => 'get') do |f| %>
+    <%= form_for(:team,  :url => {:action => 'index'}, :method => 'get') do |f| %>
         <div class="row">
           <div class="input-field col s3">
             <%= f.text_field :team_name, id: "team_name_filter" %>
