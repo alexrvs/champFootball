@@ -4,4 +4,9 @@ class UserRank < ApplicationRecord
 
     where('user_id = ?',user_id).average(:rank)
   }
+
+  def self.new_vote(records)
+    self.create(records)
+  end
+
 end
