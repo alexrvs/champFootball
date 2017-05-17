@@ -1,7 +1,5 @@
 class Admin::MatchesController < ApplicationController
 
-  before_action :match_find
-
   layout 'admin/admin'
 
   def index
@@ -55,10 +53,6 @@ class Admin::MatchesController < ApplicationController
   end
 
   private
-
-  def match_find
-    @match = Match.find(params[:id])
-  end
 
   def match_params
     params.require(:match).permit(:team1_score, :team2_score, :team1_count_goals, :team2_count_goals)
