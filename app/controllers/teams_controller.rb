@@ -4,7 +4,7 @@ class TeamsController < ApplicationController
 
   def index
     unless params[:team].nil?
-      @teams = Team.with_player(params[:team][:player_name], params[:team][:player_name])
+      @teams = Team.with_player(params[:team][:player_name])
     else
       @teams = Team.all
     end

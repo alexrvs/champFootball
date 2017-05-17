@@ -6,7 +6,8 @@ class UserRank < ApplicationRecord
   }
 
   def self.new_vote(records)
-    self.create(records)
+
+      self.create(records) if self.valid?
   end
 
 end

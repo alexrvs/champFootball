@@ -24,12 +24,12 @@ class Team < ApplicationRecord
                           WHERE teams.id = ' + team_id.to_s + 'GROUP BY teams.id, matches.team1_id, matches.id')
   }
 
-  scope :with_player, -> (first_name, last_name){
-    Team.select('*').joins('LEFT JOIN users ON (users.id = teams.user1_id OR users.id = teams.user2_id)').where('users.first_name LIKE ? OR  users.last_name LIKE ?', "#{first_name}%", "#{last_name}%")
+  scope :with_player, -> (name){
+    Team.select('*').joins('LEFT JOIN users ON (users.id = teams.user1_id OR users.id = teams.user2_id)').where('users.first_name LIKE :name OR  users.last_name LIKE :name', {name: "#{name}%"})
   }
 
   scope :with_current_user, -> (user_id){
-    where('teams.user1_id = ? OR teams.user2_id = ?', user_id)
+    where('teams.user1_id = :user_id OR teams.user2_id = :user_id', {user_id: user_id})
   }
 
   def matches
