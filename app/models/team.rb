@@ -29,7 +29,7 @@ class Team < ApplicationRecord
   }
 
   scope :with_current_user, -> (user_id){
-    where('teams.user1_id = ? OR teams.user2_id = ?', user_id, user_id)
+    where('teams.user1_id = ? OR teams.user2_id = ?', user_id)
   }
 
   def matches
