@@ -7,14 +7,8 @@ class Admin::TeamsController < ApplicationController
     @teams = Team.all.order(:id)
   end
 
-
   def show
     @team = Team.find(params[:id])
-
-  end
-
-  def new
-    @team = Team.new
   end
 
   def create
@@ -52,21 +46,9 @@ class Admin::TeamsController < ApplicationController
     @countTeams = (@usersTeam.count/2).to_i
 
     @countTeams.times do |i|
-      @team = Team.find(params[:id])
-      @team.name = 'Team ' + (i+1).to_s
-      @team.description = 'Default Description' + @team.name.to_s
-      @team.points_count = (i+1).to_i
-
-      @team.first_player = @usersTeam.max { |a, b| a.rank <=> b.rank }
-      @team.user1_id = @team.first_player.id
-      @usersTeam.delete_if{ |u| u.id == @team.first_player.id }
-
-      @team.second_player = @usersTeam.min { |a, b| a.rank <=> b.rank }
-      @team.user2_id = @team.second_player.id
-      @usersTeam.delete_if{ |u| u.id == @team.second_player.id }
-
-      @team.save
+      Team.generate(@usersTeam)
     end
+
     redirect_to :action => 'index'
   end
 
