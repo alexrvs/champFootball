@@ -1,5 +1,7 @@
 class Admin::MatchesController < ApplicationController
 
+  before_action :match_find
+
   layout 'admin/admin'
 
   def index
@@ -14,28 +16,14 @@ class Admin::MatchesController < ApplicationController
     end
   end
 
-
   def index_generate
     @teams = Team.all
   end
 
   def show
     @match = Match.find(params[:id])
-
   end
 
-  def new
-    @match = Match.new
-  end
-
-  def create
-    @match = Match.new(match_params)
-    if @match.save
-      redirect_to :action => 'show', :id => @match.id
-    else
-      render :action => 'new'
-    end
-  end
 
   def destroy
     @match = Match.find(params[:id])
@@ -66,6 +54,11 @@ class Admin::MatchesController < ApplicationController
     redirect_to :controller => 'matches', :action => 'index'
   end
 
+  private
+
+  def match_find
+    @match = Match.find(params[:id])
+  end
 
   def match_params
     params.require(:match).permit(:team1_score, :team2_score, :team1_count_goals, :team2_count_goals)
