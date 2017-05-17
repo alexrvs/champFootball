@@ -1,6 +1,6 @@
 class Admin::RoundsController < ApplicationController
 
-  before_action :find_match, only: [:show, :destroy, :edit, :update]
+  before_action :find_round, only: [:show, :destroy, :edit, :update]
 
   layout 'admin/admin'
 

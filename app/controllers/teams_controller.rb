@@ -1,5 +1,7 @@
 class TeamsController < ApplicationController
 
+  before_action :find_teams, only: [:showTeamCurrentUser, :editTeamByUser]
+
   layout 'application'
 
   def index
@@ -12,16 +14,12 @@ class TeamsController < ApplicationController
   end
 
   def showTeamCurrentUser
-    @team = Team.find(params[:id])
   end
 
-
   def editTeamByUser
-    @team =  Team.find(params[:id])
   end
 
   def updateTeamByUser
-    @team =  Team.find(params[:id])
     if @team.update_attributes(team_user_params)
       flash.now[:success] = "Name team successful updated!"
       redirect_to :action => 'teams'
@@ -38,6 +36,12 @@ class TeamsController < ApplicationController
 
   def team_user_params
     params.require(:team).permit(:name)
+  end
+
+  private
+
+  def find_teams
+    @team =  Team.find(params[:id])
   end
 
 end

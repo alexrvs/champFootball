@@ -10,7 +10,6 @@ class Admin::StandingsController < ApplicationController
 
   def show
     @standings = Team.all
-
   end
 
   def new
@@ -28,7 +27,6 @@ class Admin::StandingsController < ApplicationController
 
   def destroy
     @standings = Team.find(params[:id])
-
   end
 
   def edit
@@ -44,12 +42,8 @@ class Admin::StandingsController < ApplicationController
     end
   end
 
-
-
   def standings_params
     params.require(:standings).permit(:name,:description, :points_count)
   end
-
-
 
 end
