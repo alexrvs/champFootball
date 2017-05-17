@@ -41,14 +41,7 @@ class Admin::TeamsController < ApplicationController
   # Generate team
 
   def generate
-
-    @usersTeam = User.without_admin.to_a
-    @countTeams = (@usersTeam.count/2).to_i
-
-    @countTeams.times do |i|
-      Team.generate(@usersTeam)
-    end
-
+    Team.generate
     redirect_to :action => 'index'
   end
 

@@ -36,21 +36,36 @@ class Team < ApplicationRecord
     Match.select('*').joins('LEFT JOIN teams ON (teams.id = matches.team1_id OR teams.id = matches.team2_id)').where(['teams.id = ?', self.id])
   end
 
-  def self.generate(users)
+  def self.generate
 
-    @team = self.find(params[:id])
-    @team.name =  'Team ' + (i+1).to_s
-    @team.description = 'Default Description' + @team.name.to_s
-    @team.points_count = (i+1).to_i
+    @usersTeam = User.without_admin.to_a
+    @countTeams = (@usersTeam.count/2).to_i
+    @allTeam = Array.new
+    @tournament_id = Tournament.with_status('open').first.id
 
-    @team.first_player = users.max { |a, b| a.rank <=> b.rank }
-    @team.user1_id = @team.first_player.id
-    users.delete_if{ |u| u.id == @team.first_player.id }
+    @countTeams.times do |i|
 
-    @team.second_player = users.min { |a, b| a.rank <=> b.rank }
-    @team.user2_id = @team.second_player.id
-    users.delete_if{ |u| u.id == @team.second_player.id }
-    @team.save
+      first_player = @usersTeam.max { |a, b| a.rank <=> b.rank }
+      @usersTeam.delete_if{|u| u.id == first_player.id}
+      second_player = @usersTeam.min { |a, b| a.rank <=> b.rank }
+      @usersTeam.delete_if{|u| u.id == second_player.id}
+
+      @teamItem = Hash.new
+      @teamItem["name"] = self.full_team_name(first_player, second_player)
+      @teamItem["description"] = 'Default Description ' + @teamItem["name"].to_s
+      @teamItem["points_count"] = (i+1).to_i
+      @teamItem["user1_id"] = first_player.id
+      @teamItem["user2_id"] = second_player.id
+      @teamItem["tournament_id"] = @tournament_id
+      @allTeam << @teamItem
+
+    end
+      self.create(@allTeam)
+  end
+
+  def self.full_team_name(first_player, second_player)
+    first_player.last_name.chars.first.capitalize.to_s  + ' ' + first_player.last_name.chars.first.capitalize.to_s + ' + '
+    + second_player.last_name.chars.first.capitalize.to_s  + ' ' + second_player.last_name.chars.first.capitalize.to_s
   end
 
 

@@ -2,6 +2,8 @@ class Admin::MatchesController < ApplicationController
 
   layout 'admin/admin'
 
+  before_action :find_match, only: [:show, :destroy, :edit, :update]
+
   def index
     if params[:match].present?
       @matches = Match.where(nil).order(:id)  # creates an anonymous scope
@@ -18,22 +20,16 @@ class Admin::MatchesController < ApplicationController
   end
 
   def show
-    @match = Match.find(params[:id])
   end
 
-
   def destroy
-    @match = Match.find(params[:id])
-
+    @match.destroy
   end
 
   def edit
-    @match = Match.find(params[:id])
   end
 
   def update
-
-    @match = Match.find(params[:id])
 
     if @match.update_attributes!(match_params)
       redirect_to  :action => 'index'
@@ -52,6 +48,10 @@ class Admin::MatchesController < ApplicationController
   end
 
   private
+
+  def find_match
+    @match = Match.find(params[:id])
+  end
 
   def match_params
     params.require(:match).permit(:team1_score, :team2_score, :team1_count_goals, :team2_count_goals)
