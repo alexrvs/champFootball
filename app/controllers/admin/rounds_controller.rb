@@ -1,16 +1,14 @@
 class Admin::RoundsController < ApplicationController
 
-  layout 'admin/admin'
+  before_action :find_match, only: [:show, :destroy, :edit, :update]
 
+  layout 'admin/admin'
 
   def index
     @rounds = Round.all
   end
 
-
   def show
-    @round = Round.find(params[:id])
-
   end
 
   def new
@@ -27,16 +25,13 @@ class Admin::RoundsController < ApplicationController
   end
 
   def destroy
-    @round = Round.find(params[:id])
     @round.destroy
   end
 
   def edit
-    @round = Round.find(params[:id])
   end
 
   def update
-    @round = Round.find(params[:id])
     if @round.update_attributes(params[:rounds])
       redirect_to :action => 'show', :id => @round.id
     elsif
@@ -44,9 +39,13 @@ class Admin::RoundsController < ApplicationController
     end
   end
 
-
   def round_params
     params.require(:round).permit(:name)
   end
-  
+
+  private
+
+  def find_round
+    @round = Round.find(params[:id])
+  end
 end

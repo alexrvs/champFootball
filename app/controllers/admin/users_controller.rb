@@ -1,17 +1,13 @@
 class Admin::UsersController < ApplicationController
 
+  before_action :find_user, only: [:show, :destroy, :update]
   layout 'admin/admin'
 
-
   def index
-    # @users = User.find_by(is_admin: nil)
-    @users = User.all
+    @users = User.without_admin
   end
 
-
   def show
-    @user = User.find(params[:id])
-
   end
 
   def new
@@ -28,16 +24,13 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
     @user.destroy
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       redirect_to :action => 'show', :id => @user.id
     elsif
@@ -50,5 +43,10 @@ class Admin::UsersController < ApplicationController
     params.require(:user).permit(:first_name,:last_name,:email)
   end
 
+  private
+
+  def find_user
+    @user = User.find(params[:id])
+  end
 
 end

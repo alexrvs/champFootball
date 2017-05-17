@@ -1,14 +1,13 @@
 class Admin::TeamsController < ApplicationController
   layout 'admin/admin'
 
-  before_action :find_team, only: [:show]
+  before_action :find_team, only: [:show, :edit, :destroy, :update]
 
   def index
     @teams = Team.all.order(:id)
   end
 
   def show
-    @team = Team.find(params[:id])
   end
 
   def create
@@ -21,16 +20,12 @@ class Admin::TeamsController < ApplicationController
   end
 
   def destroy
-    @team = Team.find(params[:id])
-
   end
 
   def edit
-    @team = Team.find(params[:id])
   end
 
   def update
-    @team = Team.find(params[:id])
     if @team.update_attributes(params[:team])
       redirect_to :action => 'show', :id => @team.id
     elsif

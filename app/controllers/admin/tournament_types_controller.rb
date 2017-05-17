@@ -1,15 +1,13 @@
 class Admin::TournamentTypesController < ApplicationController
-  layout 'admin/admin'
 
+  before_action :find_tournament_type, only: [:show, :destroy, :update]
+  layout 'admin/admin'
 
   def index
     @tournament_types = TournamentType.all
   end
 
-
   def show
-    @tournament_type = TournamentType.find(params[:id])
-
   end
 
   def new
@@ -26,16 +24,13 @@ class Admin::TournamentTypesController < ApplicationController
   end
 
   def destroy
-    @tournament_type = TournamentType.find(params[:id])
     @tournament_type.destroy
   end
 
   def edit
-    @tournament_type = TournamentType.find(params[:id])
   end
 
   def update
-    @tournament_type = TournamentType.find(params[:id])
     if @tournament_type.update_attributes(params[:tournament_types])
       redirect_to :action => 'show', :id => @tournament_type.id
     elsif
@@ -46,5 +41,11 @@ class Admin::TournamentTypesController < ApplicationController
 
   def tournament_type_params
     params.require(:tournament_type).permit(:name)
+  end
+
+  private
+
+  def find_tournament_type
+    @tournament_type = TournamentType.find(params[:id])
   end
 end
