@@ -28,6 +28,13 @@ class Team < ApplicationRecord
 
   }
 
+  def self.stand(team_id)
+    Team.joins("LEFT JOIN matches as m1 ON matches.team1_id = team.id")
+        .joins("LEFT JOIN matches as m2 ON matches.team2_id = team.id")
+        .joins(:tournament)
+        .where("team.id = ?", team_id)
+  end
+
   scope :with_player, -> (name){
       joins('LEFT JOIN users ON (users.id = teams.user1_id OR users.id = teams.user2_id)').where('users.first_name LIKE :name OR  users.last_name LIKE :name', {name: "#{name}%"})
   }

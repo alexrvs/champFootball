@@ -1,7 +1,4 @@
-<!--место | название команды | коли-во сыгранных игр | кол-во побед | кол-во поражений | забитые — пропущенные голы | разница голов | очки-->
-
 <h1>Standings</h1>
-
 <table class="bordered">
   <thead>
   <tr>
@@ -13,24 +10,23 @@
     <th>Scoring - goals conceded</th>
     <th>Goal difference</th>
     <th>Points</th>
-    <th colspan="2" aria-valuetext="center">Action</th>
   </tr>
   </thead>
-  <% @teams.each do |team| %>
-      <% @standings = Team.standings(team.id).first %>
+
+  <%  @allTeam.sort_by { |hsh| hsh["position"] }
+      @allTeam.each_with_index do |team, position| %>
       <tr>
-        <td><%= team.id %></td>
-        <td><%= team.name %></td>
-        <td><%= @standings.count_matches_all %></td>
-        <td><%= @standings.team_count_wins1.to_i + @standings.team_count_wins2.to_i %></td>
-        <td><%= @standings.count_matches_lose1.to_i + @standings.count_matches_lose2.to_i %></td>
-        <td><%= (@standings.all_scored_goals1.to_i + @standings.all_scored_goals2.to_i).to_s + ' - ' + (@standings.all_missed_goals1.to_i + @standings.all_missed_goals2.to_i).to_s %></td>
-        <td><%= (@standings.all_scored_goals1.to_i + @standings.all_scored_goals2.to_i).to_i  - (@standings.all_missed_goals1.to_i + @standings.all_missed_goals2.to_i).to_i %></td>
-        <td><%=  @standings.all_team1_score.to_i + @standings.all_team2_score.to_i %></td>
-        <td><%= link_to 'Edit', :action => 'edit', :id => team.id %></td>
-        <td><%= link_to 'Destroy', {:action => 'destroy', :id => team.id}, :confirm => 'Are you sure?', :method => :delete %></td>
+        <td><%= position+1 %></td>
+        <td><%= team["name"] %></td>
+        <td><%= team["count_matches_all"] %></td>
+        <td><%= team["wins"] %></td>
+        <td><%= team["lose"] %></td>
+        <td><%= team["score_conceded_goals"] %></td>
+        <td><%= team["difference_goals"] %></td>
+        <td><%= team["points"] %></td>
       </tr>
   <% end %>
+
 </table>
 <br />
 
