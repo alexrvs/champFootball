@@ -1,6 +1,6 @@
 class Admin::TournamentsController < ApplicationController
 
-  before_action :find_tournament, only: [:show, :destroy, :update]
+  before_action :find_tournament, only: [:show, :edit, :destroy, :update]
   layout 'admin/admin'
 
 
@@ -14,7 +14,6 @@ class Admin::TournamentsController < ApplicationController
   def new
     @tournament = Tournament.new
     @tournaments_type = TournamentType.all
-    byebug
   end
 
   def create

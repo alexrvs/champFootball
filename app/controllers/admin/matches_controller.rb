@@ -5,14 +5,9 @@ class Admin::MatchesController < ApplicationController
   before_action :find_match, only: [:show, :destroy, :edit, :update]
 
   def index
-    if params[:match].present?
       @matches = Match.where(nil).order(:id)  # creates an anonymous scope
-      @matches = Match.with_team( params[:match][:team_name]).order(:id) if params[:match][:team_name].present?
-      @matches = Match.with_player(params[:match][:player_name]).order(:id) if params[:match][:player_name].present?
-      @matches = Match.search_by_team_and_player(params[:match][:team_name], params[:match][:player_name]).order(:id) if params[:match][:team_name].present? && params[:match][:player_name]
-    else
-      @matches = Match.order(:id)
-    end
+      @matches = @matches.with_team( params[:match][:team_name]).order(:id) if params[:match][:team_name].present?
+      @matches = @matches.with_player(params[:match][:player_name]).order(:id) if params[:match][:player_name].present?
   end
 
   def index_generate

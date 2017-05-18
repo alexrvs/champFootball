@@ -8,18 +8,18 @@ class Match < ApplicationRecord
 
 
     scope :with_team, -> (name) {
-        Match.select('*').joins('LEFT JOIN teams ON (teams.id = matches.team1_id OR teams.id = matches.team2_id)').where(' teams.name LIKE :name ', {name: "#{name}%"})
+        joins('LEFT JOIN teams ON (teams.id = matches.team1_id OR teams.id = matches.team2_id)').where(' teams.name LIKE :name ', {name: "#{name}%"})
     }
 
     scope :with_player, -> (player_name){
-        Match.select('*').joins('LEFT JOIN teams ON (teams.id = matches.team1_id OR teams.id = matches.team2_id)
-                                 LEFT JOIN users ON (users.id = teams.user1_id OR users.id = teams.user2_id )')
-                        .where('users.first_name LIKE :name OR users.last_name LIKE :name', {name: "#{player_name}%"})
+        joins('LEFT JOIN teams ON (teams.id = matches.team1_id OR teams.id = matches.team2_id)')
+        .joins('LEFT JOIN users ON (users.id = teams.user1_id OR users.id = teams.user2_id )')
+        .where('users.first_name LIKE :name OR users.last_name LIKE :name', {name: "#{player_name}%"})
     }
 
     scope :search_by_team_and_player, -> (team_name, player_name){
 
-      Match.select('*').joins('LEFT JOIN teams ON (teams.id = matches.team1_id OR teams.id = matches.team2_id)
+        joins('LEFT JOIN teams ON (teams.id = matches.team1_id OR teams.id = matches.team2_id)
                                  LEFT JOIN users ON (users.id = teams.user1_id OR users.id = teams.user2_id )')
           .where('(users.first_name LIKE :player_name OR users.last_name LIKE :player_name) AND teams.name LIKE :team_name', {team_name: "#{team_name}%", player_name: "#{player_name}%"})
     }

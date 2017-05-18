@@ -47,9 +47,7 @@ class Admin::TeamsController < ApplicationController
     @userRank.each do |user|
       @averageRank = UserRank.avg_rank user.id
       user.rank = @averageRank.to_i
-      if user.valid?
-        user.save
-      end
+      user.save
     end
     redirect_to :action => 'index'
   end

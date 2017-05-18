@@ -9,7 +9,7 @@ class UserRanksController < ApplicationController
 
   def create
 
-    if params[:user_rank][:rank].present? &&  !params[:user_rank][:rank].blank?
+    if params[:user_rank][:rank].present?
       @vote_result = params[:user_rank][:rank]
 
       @hash_vote = JSON.parse @vote_result
