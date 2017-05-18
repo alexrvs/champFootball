@@ -5,12 +5,9 @@ class TeamsController < ApplicationController
   layout 'application'
 
   def index
-    unless params[:team].nil?
-      @teams = Team.with_player(params[:team][:player_name])
-    else
-      @teams = Team.all
-    end
-
+    @teams = Team.where(nil).order(:id)
+    @teams = @teams.find_by(name: params[:team][:team_name]) if params[:team].present? && params[:team][:team_name].present?
+    @teams = @teams.with_player(params[:team][:player_name]).order(:id) if params[:team].present? && params[:team][:player_name].present?
   end
 
   def showTeamCurrentUser
@@ -31,7 +28,7 @@ class TeamsController < ApplicationController
   end
 
   def teams_params
-    params.require(:team).permit(:player_name)
+    params.require(:team).permit(:player_name, :team_name)
   end
 
   def team_user_params
