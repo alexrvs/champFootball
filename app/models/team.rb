@@ -12,7 +12,7 @@ class Team < ApplicationRecord
   }
 
   scope :standings, -> (team_id) {
-    Team.find_by_sql('SELECT *,
+      find_by_sql('SELECT *,
                             (SELECT  count(*) FROM matches WHERE matches.team1_id = teams.id OR matches.team2_id = teams.id) as count_matches_all,
                             (SELECT  count(*) FROM matches WHERE (matches.team1_id = teams.id OR matches.team2_id = teams.id)
                                                                   AND matches.team1_score <> 0 OR matches.team2_score <> 0) as count_matches_wins,
@@ -24,8 +24,29 @@ class Team < ApplicationRecord
                           WHERE teams.id = ' + team_id.to_s + 'GROUP BY teams.id, matches.team1_id, matches.id')
   }
 
+  scope :standings2, -> (team_id){
+      Team.find_by_sql('SELECT *,
+                  (SELECT  count(*) FROM matches WHERE matches.team1_id = teams.id OR matches.team2_id = teams.id) as count_matches_all,
+                  (SELECT count(*) FROM matches LEFT JOIN teams ON (teams.id = matches.team1_id) WHERE (matches.team1_score <> 0 AND matches.team1_id IN (' + team_id.to_s + '))) as team_count_wins1,
+                  (SELECT count(*) FROM matches LEFT JOIN teams ON (teams.id = matches.team2_id) WHERE (matches.team2_score <> 0 AND matches.team2_id IN (' + team_id.to_s + '))) as team_count_wins2,
+                  (SELECT  count(*) FROM matches WHERE matches.team1_id = teams.id AND (matches.team1_score = 0 AND matches.team2_score > 0 )) as count_matches_lose1,
+                  (SELECT  count(*) FROM matches WHERE matches.team2_id = teams.id AND (matches.team2_score = 0 AND matches.team1_score > 0 )) as count_matches_lose2,
+                  (SELECT SUM(team1_score) FROM matches  WHERE matches.team1_id = teams.id GROUP BY teams.id) as all_team1_score,
+                  (SELECT SUM(team2_score) FROM matches  WHERE matches.team2_id = teams.id GROUP BY teams.id) as all_team2_score,
+                  (SELECT SUM(team2_count_goals) FROM matches  WHERE matches.team2_id <> teams.id AND matches.team1_id = teams.id GROUP BY teams.id) as all_missed_goals1,
+                  (SELECT SUM(team1_count_goals) FROM matches  WHERE matches.team1_id <> teams.id AND matches.team2_id = teams.id GROUP BY teams.id) as all_missed_goals2,
+                  (SELECT SUM(team1_count_goals) FROM matches  WHERE matches.team2_id <> teams.id AND matches.team1_id = teams.id GROUP BY teams.id) as all_scored_goals1,
+                  (SELECT SUM(team2_count_goals) FROM matches  WHERE matches.team1_id <> teams.id AND matches.team2_id = teams.id GROUP BY teams.id) as all_scored_goals2
+                FROM matches
+                  LEFT JOIN teams ON (teams.id = matches.team2_id OR teams.id = matches.team2_id)
+                WHERE teams.id = ' + team_id.to_s + ' GROUP BY teams.id, matches.team1_id, matches.id LIMIT 1
+')
+
+  }
+
+
   scope :with_player, -> (name){
-    Team.select('*').joins('LEFT JOIN users ON (users.id = teams.user1_id OR users.id = teams.user2_id)').where('users.first_name LIKE :name OR  users.last_name LIKE :name', {name: "#{name}%"})
+      joins('LEFT JOIN users ON (users.id = teams.user1_id OR users.id = teams.user2_id)').where('users.first_name LIKE :name OR  users.last_name LIKE :name', {name: "#{name}%"})
   }
 
   scope :with_current_user, -> (user_id){

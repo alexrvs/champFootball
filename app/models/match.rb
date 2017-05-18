@@ -12,7 +12,7 @@ class Match < ApplicationRecord
     }
 
     scope :with_player, -> (player_name){
-        joins('LEFT JOIN teams ON (teams.id = matches.team1_id OR teams.id = matches.team2_id)')
+         joins('LEFT JOIN teams ON (teams.id = matches.team1_id OR teams.id = matches.team2_id)')
         .joins('LEFT JOIN users ON (users.id = teams.user1_id OR users.id = teams.user2_id )')
         .where('users.first_name LIKE :name OR users.last_name LIKE :name', {name: "#{player_name}%"})
     }

@@ -16,26 +16,21 @@
     <th colspan="2" aria-valuetext="center">Action</th>
   </tr>
   </thead>
-
   <% @teams.each do |team| %>
-      <% @standings = Team.standings(team.id).first %>
+      <%   StandingsHelper.load team %>
       <tr>
         <td></td>
         <td><%= team.name %></td>
-        <td><%= @standings.count_matches_all %></td>
-        <td><%= @standings.count_matches_wins %></td>
-        <td><%= @standings.count_matches_lose %></td>
-        <td><%= @standings.all_scored_goals.to_s + ' - ' +  @standings.all_missed_goals.to_s %></td>
-        <td><%= @standings.all_scored_goals.to_i - @standings.all_missed_goals.to_i %></td>
-        <td><%= @standings.all_team1_score %></td>
+        <td><%= count_matches_all %></td>
+        <td><%= count_wins %></td>
+        <td><%= count_lose %></td>
+        <td><%=  scored_goals.to_s + ' - ' +  missed_goals.to_s %></td>
+        <td><%= scored_goals.to_i - missed_goals.to_i %></td>
+        <td><%= all_team_score %></td>
         <td><%= link_to 'Edit', :action => 'edit', :id => team.id %></td>
         <td><%= link_to 'Destroy', {:action => 'destroy', :id => team.id}, :confirm => 'Are you sure?', :method => :delete %></td>
       </tr>
   <% end %>
-      <tr>
-
-      </tr>
-
 </table>
 <br />
 

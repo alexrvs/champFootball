@@ -1,6 +1,7 @@
-
 $(document).ready(function () {
+
     $('select').material_select();
+    $('#tournament_status_list').select();
     $('ul.tabs').tabs();
 
 
