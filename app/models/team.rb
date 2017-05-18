@@ -20,8 +20,8 @@ class Team < ApplicationRecord
                   (SELECT SUM(team2_score) FROM matches  WHERE matches.team2_id = teams.id GROUP BY teams.id) AS all_team2_score,
                   (SELECT SUM(team2_count_goals) FROM matches  WHERE matches.team2_id <> teams.id AND matches.team1_id = teams.id GROUP BY teams.id) AS all_missed_goals1,
                   (SELECT SUM(team1_count_goals) FROM matches  WHERE matches.team1_id <> teams.id AND matches.team2_id = teams.id GROUP BY teams.id) AS all_missed_goals2,
-                  (SELECT SUM(team1_count_goals) FROM matches  WHERE matches.team2_id <> teams.id AND matches.team1_id = teams.id GROUP BY teams.id) AS all_scored_goals1,
-                  (SELECT SUM(team2_count_goals) FROM matches  WHERE matches.team1_id <> teams.id AND matches.team2_id = teams.id GROUP BY teams.id) AS all_scored_goals2
+                  (SELECT SUM(team2_count_goals) FROM matches  WHERE   matches.team2_id = teams.id  GROUP BY teams.id) AS all_scored_goals1,
+                  (SELECT SUM(team1_count_goals) FROM matches  WHERE  matches.team1_id = teams.id GROUP BY teams.id) AS all_scored_goals2
                 FROM matches
                   LEFT JOIN teams ON (teams.id = matches.team1_id OR teams.id = matches.team2_id)
                 WHERE teams.id = ' + team_id.to_s + ' GROUP BY teams.id, matches.team1_id, matches.id LIMIT 1')
