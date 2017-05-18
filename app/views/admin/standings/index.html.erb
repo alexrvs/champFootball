@@ -24,7 +24,7 @@
         <td><%= @standings.count_matches_all %></td>
         <td><%= @standings.team_count_wins1.to_i + @standings.team_count_wins2.to_i %></td>
         <td><%= @standings.count_matches_lose1.to_i + @standings.count_matches_lose2.to_i %></td>
-        <td><%= (@standings.all_team1_score.to_i + @standings.all_team2_score.to_i).to_s + ' - ' + (@standings.all_missed_goals1.to_i + @standings.all_missed_goals2.to_i).to_s %></td>
+        <td><%= (@standings.all_scored_goals1.to_i + @standings.all_scored_goals1.to_i).to_s + ' - ' + (@standings.all_missed_goals1.to_i + @standings.all_missed_goals2.to_i).to_s %></td>
         <td><%= (@standings.all_team1_score.to_i + @standings.all_team2_score.to_i).to_i  - (@standings.all_missed_goals1.to_i + @standings.all_missed_goals2.to_i).to_i %></td>
         <td><%=  @standings.all_team1_score.to_i + @standings.all_team2_score.to_i %></td>
         <td><%= link_to 'Edit', :action => 'edit', :id => team.id %></td>
