@@ -1,11 +1,13 @@
 module StandingsHelper
+
   attr_accessor :standings
+
 
   def self.load(team)
     @standings = Team.standings2(team.id).first
   end
 
-  def self.count_matches_all
+  def count_matches_all
      @standings.count_matches_all
   end
 
