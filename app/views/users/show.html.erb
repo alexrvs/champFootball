@@ -2,9 +2,24 @@
 
 <div class="row">
   <div class="card-panel">
-    <h1>
-      <%= gravatar_for @user %>
-      <%= full_name @user %>
-    </h1>
+    <div class="row">
+      <div class=" col s12">
+        <%= gravatar_for @user %>
+        <h4><%= full_name @user %></h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <label for="vote_link">Link for vote:</label>
+        <%= link_to 'Vote Rank User', rank_path, {id: 'vote_link'} %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <label for="own_team" >Own Team:</label>
+        <% @current_team = current_team %>
+            <%= link_to @current_team.first.name, :controller => 'teams', :action => 'showTeamCurrentUser', :id => @current_team.ids.first %>
+      </div>
+    </div>
   </div>
 </div>

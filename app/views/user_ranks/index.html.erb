@@ -2,8 +2,8 @@
   <div class="card-panel">
     <h4>Rank User</h4>
     <ul id="sortable" class="collection">
-      <% @users.each do |user| %>
-          <li class="ui-state-default collection-item"><%= user.rank %>
+      <% @users.each_with_index  do | user, position | %>
+          <li class="ui-state-default collection-item"><%= position+1 %>
             <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
             <%= full_name user %>
             <div class="newRank" style="display: none" data-newrank="<%= user.rank %>">
