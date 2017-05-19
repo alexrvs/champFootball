@@ -28,14 +28,15 @@ Rails.application.routes.draw do
   # Admin Panel
 
   namespace :admin do
-    resources :users, path: 'admin/users'
+
+    resources :users
     resources :sessions
-    resources :tournaments, path: 'admin/tournaments'
-    resources :teams, path: 'admin/teams'
-    resources :tournament_types, path: 'admin/tournament_types'
-    resources :matches, path: 'admin/matches'
-    resources :rounds, path: 'admin/rounds'
-    resources :standings, path: 'admin/standings'
+    resources :tournaments
+    resources :teams
+    resources :tournament_types
+    resources :matches
+    resources :rounds
+    resources :standings
 
     get 'tournaments', to: 'tournaments#index'
     get 'tournament_types', to: 'tournament_types#index'

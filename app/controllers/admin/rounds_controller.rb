@@ -32,10 +32,10 @@ class Admin::RoundsController < ApplicationController
   end
 
   def update
-    if @round.update_attributes(params[:rounds])
-      redirect_to :action => 'show', :id => @round.id
-    elsif
-    render 'update'
+    if @round.update_attributes(round_params)
+      redirect_to :action => 'index'
+    else
+      render :action => 'edit'
     end
   end
 

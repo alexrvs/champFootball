@@ -1,6 +1,6 @@
 class Admin::TournamentTypesController < ApplicationController
 
-  before_action :find_tournament_type, only: [:show, :destroy, :update]
+  before_action :find_tournament_type, only: [:show, :edit, :destroy, :update]
   layout 'admin/admin'
 
   def index
@@ -31,10 +31,10 @@ class Admin::TournamentTypesController < ApplicationController
   end
 
   def update
-    if @tournament_type.update_attributes(params[:tournament_types])
-      redirect_to :action => 'show', :id => @tournament_type.id
-    elsif
-    render 'update'
+    if @tournament_type.update_attributes(tournament_type_params)
+      redirect_to :action => 'index'
+    else
+    render :action => 'edit'
     end
   end
 

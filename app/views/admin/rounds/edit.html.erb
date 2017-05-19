@@ -1,14 +1,14 @@
-<h4>Edit Tournament Types</h4>
+<h4>Edit Round</h4>
 
-<% provide(:title, 'Edit Tournament Type') %>
+<% provide(:title, 'Edit Round') %>
 
 <div class="row">
   <div class="card-panel">
     <div class="col s12 m4 l3"></div>
-    <%= form_for(:tournament_type,  :url => {:action => 'update'},:method => 'patch') do |f| %>
+    <%= form_for(:round,  :url => {:action => 'update'},:method => 'patch') do |f| %>
         <div class="row">
           <div class="input-field col s6">
-            <%= f.text_field :name, id: "tournament_name" %>
+            <%= f.text_field :name, id: "round_name" %>
             <%= f.label :name %>
           </div>
         </div>
