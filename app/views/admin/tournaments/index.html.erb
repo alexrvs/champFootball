@@ -6,7 +6,7 @@
     <th>Name</th>
     <th>Description</th>
     <th>Status</th>
-    <th colspan="2" aria-valuetext="center">Action</th>
+    <th>Action</th>
   </tr>
   </thead>
 
@@ -20,7 +20,6 @@
             <td width="20%">Non set</td>
         <% end %>
         <td><%= link_to 'Edit', :action => 'edit', :id => tournament.id %></td>
-        <td><%= link_to 'Destroy', {:action => 'destroy', :id => tournament.id}, :confirm => 'Are you sure?', :method => :post %></td>
       </tr>
   <% end %>
 </table>
