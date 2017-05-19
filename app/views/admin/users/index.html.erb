@@ -9,7 +9,6 @@
     <th>Email</th>
     <th>Created</th>
     <th>Updated</th>
-    <th colspan="2" aria-valuetext="center">Action</th>
   </tr>
   </thead>
 
@@ -25,12 +24,7 @@
         <td><%= link_to user.email, :action => 'show', :id => user.id %></td>
         <td><%= time_ago_in_words(user.created_at) %> </td>
         <td><%= time_ago_in_words(user.updated_at) %> </td>
-        <td><%= link_to 'Edit', :action => 'edit', :id => user.id %></td>
-        <td><%= link_to 'Destroy', {:action => 'destroy', :id => user.id}, :confirm => 'Are you sure?', :method => :post %></td>
       </tr>
   <% end %>
 </table>
-
 <br />
-
-<%= link_to 'New User', {action: 'new'}, {class: "waves-effect waves-light btn"}  %>
