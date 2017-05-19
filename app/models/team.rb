@@ -28,15 +28,12 @@ class Team < ApplicationRecord
 
   }
 
-  def self.stand(team_id)
-    Team.joins("LEFT JOIN matches as m1 ON matches.team1_id = team.id")
-        .joins("LEFT JOIN matches as m2 ON matches.team2_id = team.id")
-        .joins(:tournament)
-        .where("team.id = ?", team_id)
-  end
-
   scope :with_player, -> (name){
       joins('LEFT JOIN users ON (users.id = teams.user1_id OR users.id = teams.user2_id)').where('users.first_name LIKE :name OR  users.last_name LIKE :name', {name: "#{name}%"})
+  }
+
+  scope :with_team_name, -> (team_name){
+      where(" teams.name LIKE ? ",  "#{team_name}%")
   }
 
   scope :with_current_user, -> (user_id){
@@ -46,6 +43,14 @@ class Team < ApplicationRecord
   def matches
     Match.select('*').joins('LEFT JOIN teams ON (teams.id = matches.team1_id OR teams.id = matches.team2_id)').where(['teams.id = ?', self.id])
   end
+
+  def self.stand(team_id)
+    Team.joins("LEFT JOIN matches as m1 ON matches.team1_id = team.id")
+        .joins("LEFT JOIN matches as m2 ON matches.team2_id = team.id")
+        .joins(:tournament)
+        .where("teams.id = ?", team_id)
+  end
+
 
   def self.generate
 

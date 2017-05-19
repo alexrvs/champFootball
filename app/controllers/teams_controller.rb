@@ -6,8 +6,8 @@ class TeamsController < ApplicationController
 
   def index
     @teams = Team.where(nil).order(:id)
-    @teams = @teams.find_by(name: params[:team][:team_name]) if params[:team].present? && params[:team][:team_name].present?
     @teams = @teams.with_player(params[:team][:player_name]).order(:id) if params[:team].present? && params[:team][:player_name].present?
+    @teams = @teams.with_team_name(params[:team][:team_name]) if params[:team].present? && params[:team][:team_name].present?
   end
 
   def showTeamCurrentUser
