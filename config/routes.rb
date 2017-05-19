@@ -1,30 +1,39 @@
 Rails.application.routes.draw do
 
-  resources :users
-  resources :sessions, only: [:new, :create, :destroy]
-  resources :user_ranks
-
-  get 'welcome/index'
-
-  match '/signup', to: 'users#new', via: 'get'
-  match '/signin', to: 'sessions#new', via: 'get'
-  match '/signout', to: 'sessions#destroy', via: 'delete'
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
-  # Social Auth
-
-  match 'auth/:provider/callback', to: 'sessions#createSocAuth', via: 'get'
-  match 'auth/failure', to: redirect('/'), via: 'get'
-
-  match '/teams', to: 'teams#index', via: 'get'
-  match '/tournaments', to: 'tournaments#index', via: 'get'
-  match '/rank', to: 'user_ranks#index', via: 'get'
-  match 'team/:id' => 'teams#editTeamByUser', via: 'get'
-  match 'team/:id' => 'teams#updateTeamByUser', via: 'post'
-  match 'showTeam', to:'teams#showTeamCurrentUser', via: 'get'
+  # Front Pages
 
   root 'welcome#index'
+  resources :welcome do
+    get 'welcome/index'
+  end
+
+  resources :users
+
+  resources :sessions, only: [:new, :create, :destroy, :createSocAuth]
+
+  get '/signin', to: 'sessions#new'
+  get '/signout', to: 'sessions#destroy'
+  get '/signup', to: 'users#new', via: 'get'
+  get 'auth/:provider/callback', to: 'sessions#createSocAuth'
+
+  resources :user_ranks do
+    match '/rank', to: 'user_ranks#index', via: 'get'
+  end
+
+  resources :teams do
+    get 'teams', to: 'teams#index', via: 'get'
+  end
+
+  get 'team/:id', to: 'teams#editTeamByUser'
+  post 'team/:id', to: 'teams#updateTeamByUser'
+  get 'showTeam', to:'teams#showTeamCurrentUser'
+
+  resources :tournaments do
+    get '/tournaments', to: 'tournaments#index'
+  end
+
+  match 'auth/failure', to: redirect('/'), via: 'get'
+
 
   # Admin Panel
 

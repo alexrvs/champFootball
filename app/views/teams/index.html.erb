@@ -33,7 +33,7 @@
       <% @teams.each do |team| %>
           <tr>
             <% if team.id == @current_team.ids.first %>
-                <td><%= link_to team.name, :action => 'showTeamCurrentUser', :id => team.id %></td>
+                <td><%= link_to team.name, {:controller => 'teams', :action => 'showTeamCurrentUser', :id => team.id} %></td>
             <% else %>
                 <td><%=  team.name %></td>
             <% end %>

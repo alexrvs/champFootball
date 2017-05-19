@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
 
-  before_action :find_teams, only: [:showTeamCurrentUser, :editTeamByUser]
+  before_action :find_teams, only: [:showTeamCurrentUser, :editTeamByUser, :updateTeamByUser]
 
   layout 'application'
 
@@ -19,7 +19,7 @@ class TeamsController < ApplicationController
   def updateTeamByUser
     if @team.update_attributes(team_user_params)
       flash.now[:success] = "Name team successful updated!"
-      redirect_to :action => 'teams'
+      redirect_to :action => 'index'
     elsif
     flash.now[:error] = "Please try agailn to update name team!"
       render 'editTeamByUser'
