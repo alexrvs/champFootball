@@ -45,7 +45,7 @@
       </div>
       <div class="input-field col s3">
         <%=
-          if !@team.tournament.name.nil?
+          if !@team.tournament.nil?
             @team.tournament.name
             elsif
             'not in tournament'
