@@ -17,8 +17,13 @@
     <div class="row">
       <div class="col s12">
         <label for="own_team" >Own Team:</label>
-        <% @current_team = current_team && !current_team.nil? %>
+
+        <%
+          @current_team = current_team
+          if !@current_team.blank?
+        %>
             <%= link_to @current_team.first.name, :controller => 'teams', :action => 'showTeamCurrentUser', :id => @current_team.ids.first %>
+        <% end %>
       </div>
     </div>
   </div>
