@@ -17,7 +17,7 @@
     <div class="row">
       <div class="col s12">
         <label for="own_team" >Own Team:</label>
-        <% @current_team = current_team && current_team.present? %>
+        <% @current_team = current_team && !current_team.nil? %>
             <%= link_to @current_team.first.name, :controller => 'teams', :action => 'showTeamCurrentUser', :id => @current_team.ids.first %>
       </div>
     </div>
