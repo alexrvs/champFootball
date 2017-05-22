@@ -8,7 +8,7 @@
 <% end %>
 <nav>
   <div class="nav-wrapper">
-    <a href="#!" class="brand-logo">Champ Football</a>
+    <%= link_to 'Champ Football', root_path, class: 'brand-logo' %>
     <ul class="right hide-on-med-and-down">
       <li><%= link_to 'Home', root_path %></li>
       <% unless signed_in? %>
