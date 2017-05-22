@@ -27,7 +27,7 @@ class SessionsController < ApplicationController
     if @user.present?
       flash.now[:success] = "Profile page"
       sign_in @user
-      redirect_to @user
+      redirect_to edit_user_path(@user)
     end
 
   end
