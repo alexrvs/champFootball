@@ -44,7 +44,7 @@
         Tournament:
       </div>
       <div class="input-field col s3">
-        <%= @team.tournament.name %>
+        <%= @team.tournament.name if @team.tournament.name.present? %>
       </div>
     </div>
     <div class="row">
