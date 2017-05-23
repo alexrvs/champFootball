@@ -5,7 +5,7 @@ class Tournament < ApplicationRecord
 
 
     scope :with_new_teams, -> (tournament_id){
-      Tournament.select('*').joins('LEFT JOIN teams ON teams.tournament_id = tournaments.id').where(' teams.tournament_id <> ?', tournament_id)
+      joins('LEFT JOIN teams ON teams.tournament_id = tournaments.id').where(' teams.tournament_id <> ?', tournament_id)
     }
 
     scope :with_teams, -> (){

@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   get 'auth/:provider/callback', to: 'sessions#createSocAuth'
   get 'auth/failure', to: redirect('/')
   get 'team/:id', to: 'teams#editTeamByUser'
-  post 'team/:id', to: 'teams#updateTeamByUser'
+  patch 'team/:id', to: 'teams#updateTeamByUser'
   get 'showTeam', to:'teams#showTeamCurrentUser'
   get '/rank', to: 'user_ranks#index'
 
@@ -38,14 +38,12 @@ Rails.application.routes.draw do
     resources :rounds
     resources :standings
 
-    get 'tournaments', to: 'tournaments#index'
-    get 'tournament_types', to: 'tournament_types#index'
     get '', to:  'base#index'
     get 'generate', to: 'teams#generate'
     get 'generate_matches', to: 'matches#index_generate'
     get 'generate_matches_round', to:'matches#generate'
     get 'close_vote', to:'teams#generate_rank_user', via:'get'
-    match 'add_team_to_tournament', to:'tournaments#addTeamToTournament', via: 'post'
+    post 'add_team_to_tournament', to:'tournaments#addTeamToTournament'
 
   end
 end

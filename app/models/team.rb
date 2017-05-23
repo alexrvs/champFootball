@@ -44,14 +44,6 @@ class Team < ApplicationRecord
     Match.select('*').joins('LEFT JOIN teams ON (teams.id = matches.team1_id OR teams.id = matches.team2_id)').where(['teams.id = ?', self.id])
   end
 
-  def self.stand(team_id)
-    Team.joins("LEFT JOIN matches as m1 ON matches.team1_id = team.id")
-        .joins("LEFT JOIN matches as m2 ON matches.team2_id = team.id")
-        .joins(:tournament)
-        .where("teams.id = ?", team_id)
-  end
-
-
   def self.generate
 
     @usersTeam = User.without_admin.to_a

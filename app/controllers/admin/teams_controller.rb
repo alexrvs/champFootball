@@ -26,7 +26,7 @@ class Admin::TeamsController < ApplicationController
   end
 
   def update
-    if @team.update_attributes(params[:team])
+    if @team.update_attributes(team_params)
       redirect_to :action => 'show', :id => @team.id
     elsif
     render 'update'
