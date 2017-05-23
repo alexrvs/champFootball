@@ -1,8 +1,8 @@
 class Admin::TournamentsController < ApplicationController
 
-  before_action :find_tournament, only: [:show, :edit, :destroy, :update]
   layout 'admin/admin'
 
+  before_action :find_tournament, only: [:show, :edit, :destroy, :update]
 
   def index
     @tournaments = Tournament.all
