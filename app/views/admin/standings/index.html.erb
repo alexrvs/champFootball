@@ -13,8 +13,7 @@
   </tr>
   </thead>
 
-  <%  @allTeam.sort_by { |hsh| hsh["position"] }
-      @allTeam.each_with_index do |team, position| %>
+  <%  @allTeam.each_with_index do |team, position| %>
       <tr>
         <td><%= position+1 %></td>
         <td><%= team["name"] %></td>

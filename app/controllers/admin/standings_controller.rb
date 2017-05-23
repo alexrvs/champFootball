@@ -5,23 +5,23 @@ class Admin::StandingsController < ApplicationController
   include StandingsHelper
 
   def index
-    @teams = Team.all
 
+    @teams = Team.all
     @allTeam = Array.new
     @teams.each do |team|
+      @st = StandingsHelper.load team
       @hash = Hash.new
-      standings = Team.standings(team.id).first
-      @hash["position"] = standings.all_team1_score.to_i + standings.all_team2_score.to_i
+      @hash["position"] = StandingsHelper.position
       @hash["name"] = team.name
-      @hash["count_matches_all"] = standings.count_matches_all
-      @hash["wins"] = standings.team_count_wins1.to_i + standings.team_count_wins2.to_i
-      @hash["lose"] = standings.count_matches_lose1.to_i + standings.count_matches_lose2.to_i
-      @hash["score_conceded_goals"] = (standings.all_scored_goals1.to_i + standings.all_scored_goals2.to_i).to_s + ' - ' + (standings.all_missed_goals1.to_i + standings.all_missed_goals2.to_i).to_s
-      @hash["difference_goals"] = (standings.all_scored_goals1.to_i + standings.all_scored_goals2.to_i).to_i  - (standings.all_missed_goals1.to_i + standings.all_missed_goals2.to_i).to_i
-      @hash["points"] = standings.all_team1_score.to_i + standings.all_team2_score.to_i
+      @hash["count_matches_all"] = StandingsHelper.count_matches_all
+      @hash["wins"] = StandingsHelper.count_wins
+      @hash["lose"] = StandingsHelper.count_lose
+      @hash["score_conceded_goals"] = StandingsHelper.score_conceded_goals
+      @hash["difference_goals"] = StandingsHelper.difference_goals
+      @hash["points"] = StandingsHelper.points
       @allTeam << @hash
     end
-
+    @allTeam = @allTeam.sort{|hash1,hash2| hash1["position"] <=> hash2["position"]}.reverse
   end
 
 end
