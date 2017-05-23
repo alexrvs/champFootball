@@ -3,7 +3,6 @@ class Tournament < ApplicationRecord
    has_many :matches
    has_many :teams
 
-
     scope :with_new_teams, -> (tournament_id){
       joins('LEFT JOIN teams ON teams.tournament_id = tournaments.id').where(' teams.tournament_id <> ?', tournament_id)
     }
