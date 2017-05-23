@@ -12,6 +12,10 @@ class Tournament < ApplicationRecord
        Team.select('*').where('tournament_id IS NULL')
     }
 
+    scope :with_teams_by_tournament, -> (tournament_id){
+      Team.select('*').joins('LEFT JOIN teams ON teams.tournament_id').where('teams.tournament_id = ?', tournament_id)
+    }
+
     scope :with_status, -> (status){
       joins(:tournament_type).where('tournament_types.name = ?', status)
     }
